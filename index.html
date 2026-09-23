@@ -93,8 +93,7 @@
             <span class="card-subtitle">Gestión de turnos de tu equipo</span>
           </div>
           <p class="card-desc">Tu equipo pide, cambia y confirma turnos por WhatsApp. Andi organiza el cuadrante solo, sin grupos ni planillas.</p>
-          <!-- TODO: cambiar a /andi cuando exista la página de Andi -->
-          <a class="card-link" href="https://wa.me/573150940607?text=Hola%2C%20quiero%20conocer%20a%20Andi" data-wa-msg="Hola, quiero conocer a Andi">Conocer a Andi →</a>
+          <a class="card-link" href="/andi.html">Conocer a Andi →</a>
         </article>
         <article class="card card-mesa">
           <div class="card-top">
@@ -138,13 +137,6 @@
   </div>
 </footer>
 
-<script>
-  // TODO: pendiente flujo de prospectos en el bot
-  var WHATSAPP_NUMBER = "573150940607";
-  var WHATSAPP_BASE = "https://wa.me/" + WHATSAPP_NUMBER;
-  document.querySelectorAll("[data-wa-msg]").forEach(function (el) {
-    el.href = WHATSAPP_BASE + "?text=" + encodeURIComponent(el.getAttribute("data-wa-msg"));
-  });
-</script>
+<script src="js/whatsapp.js"></script>
 </body>
 </html>
