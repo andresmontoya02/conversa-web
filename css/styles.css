@@ -199,6 +199,17 @@ button { font-family: inherit; }
 
 .card-link { margin-top: auto; color: var(--tinta); font-weight: 700; font-size: 14px; }
 .card-link-muted { color: #A9A6B3; }
+.card-link-cta {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--tinta);
+  color: var(--lima);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.card-link-cta:hover { background: var(--lima); color: var(--tinta); transform: translateY(-2px); }
 
 /* FOOTER */
 .site-footer { background: var(--tinta); }

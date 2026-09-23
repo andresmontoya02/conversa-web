@@ -26,7 +26,7 @@
       <a class="nav-link" href="#contacto">Contacto</a>
       <!-- TODO: apuntar al dashboard real cuando esté conectado -->
       <a class="btn btn-secondary btn-sm" href="#">Iniciar sesión</a>
-      <a class="btn btn-primary btn-sm" href="https://wa.me/573150940607?text=Hola%2C%20quiero%20conocer%20Conversa" data-wa-msg="Hola, quiero conocer Conversa">Hablar por WhatsApp</a>
+      <a class="btn btn-primary btn-sm" aria-disabled="true">Hablar por WhatsApp</a>
     </nav>
   </div>
 </header>
@@ -42,7 +42,7 @@
         <h1>Tu operación,<br>sin el drama.</h1>
         <p>Conoce a los agentes de Conversa: cada uno resuelve una parte del día a día de tu negocio, directo por WhatsApp, sin apps nuevas que instalar.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://wa.me/573150940607?text=Hola%2C%20quiero%20conocer%20Conversa" data-wa-msg="Hola, quiero conocer Conversa">Escríbenos por WhatsApp</a>
+          <a class="btn btn-primary" aria-disabled="true">Escríbenos por WhatsApp</a>
           <a class="btn btn-secondary" href="#agentes">Ver agentes</a>
         </div>
       </div>
@@ -83,13 +83,13 @@
       <div class="agentes-cards">
         <article class="card card-andi">
           <div class="card-top">
-            <div class="card-icon card-icon-dark">
+            <a class="card-icon card-icon-dark" href="/andi.html" aria-label="Conocer a Andi">
               <svg viewBox="0 0 100 100" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Logo de Andi">
                 <path d="M 50 25 L 29 74"></path>
                 <path d="M 50 25 L 71 74"></path>
                 <circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"></circle>
               </svg>
-            </div>
+            </a>
             <span class="badge-pill badge-pill-lima">Disponible</span>
           </div>
           <div class="card-title">
@@ -97,7 +97,7 @@
             <span class="card-subtitle">Gestión de turnos de tu equipo</span>
           </div>
           <p class="card-desc">Tu equipo pide, cambia y confirma turnos por WhatsApp. Andi organiza el cuadrante solo, sin grupos ni planillas.</p>
-          <a class="card-link" href="/andi.html">Conocer a Andi →</a>
+          <a class="card-link card-link-cta" href="/andi.html">Conocer a Andi →</a>
         </article>
         <article class="card card-mesa">
           <div class="card-top">
@@ -132,7 +132,7 @@
         <span class="brand-name brand-name-sm">Conversa</span>
       </div>
       <nav class="footer-nav">
-        <a href="https://wa.me/573150940607?text=Hola%2C%20quiero%20conocer%20Conversa" data-wa-msg="Hola, quiero conocer Conversa">WhatsApp</a>
+        <a aria-disabled="true">WhatsApp</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </div>
