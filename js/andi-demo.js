@@ -201,10 +201,13 @@
     var options = document.createElement("div");
     options.className = "config-card-options";
     ["automatico", "aprobacion"].forEach(function (mode) {
-      var pill = document.createElement("span");
+      var label = mode === "automatico" ? "Automático" : "Con aprobación";
+      var pill = document.createElement("button");
+      pill.type = "button";
       pill.className = "config-pill" + (state.mode === mode ? " active" : "");
       pill.dataset.mode = mode;
-      pill.textContent = mode === "automatico" ? "Automático" : "Con aprobación";
+      pill.textContent = label;
+      pill.setAttribute("aria-label", "Cambiar a modo " + label);
       options.appendChild(pill);
     });
     wrap.appendChild(title);
@@ -492,9 +495,15 @@
   });
 
   els.messagesJefe.addEventListener("click", function (e) {
-    var btn = e.target.closest(".msg-pill");
-    if (!btn) return;
-    choose(btn.dataset.choice);
+    var choiceBtn = e.target.closest(".msg-pill");
+    if (choiceBtn) {
+      choose(choiceBtn.dataset.choice);
+      return;
+    }
+    var configBtn = e.target.closest(".config-pill");
+    if (configBtn) {
+      setMode(configBtn.dataset.mode);
+    }
   });
 
   var observer = new IntersectionObserver(
