@@ -40,7 +40,16 @@ a { text-decoration: none; }
 .nav-link { font-weight: 500; font-size: 14px; color: #B7B3C0; }
 
 .btn { display: inline-block; }
-.btn-primary { background: var(--lima); color: var(--tinta); font-weight: 700; font-size: 15px; padding: 14px 24px; border-radius: 12px; }
+.btn-primary {
+  background: var(--lima);
+  color: var(--tinta);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 24px;
+  border-radius: 12px;
+  transition: background 150ms ease;
+}
+.btn-primary:hover { background: #D8EC55; }
 .btn-secondary {
   background: transparent;
   border: 1px solid #3A3644;
@@ -49,7 +58,9 @@ a { text-decoration: none; }
   font-size: 15px;
   padding: 14px 24px;
   border-radius: 12px;
+  transition: color 150ms ease, border-color 150ms ease;
 }
+.btn-secondary:hover { color: var(--lila); border-color: var(--lila); }
 .btn-sm { font-size: 13px; padding: 10px 18px; border-radius: 10px; }
 
 /* HERO */
@@ -202,25 +213,57 @@ a { text-decoration: none; }
 .footer-copy { font-size: 12px; color: var(--gris); }
 
 /* PÁGINA ANDI */
-.andi-main { background: var(--hero-gradient); display: flex; }
-.andi-main-inner {
+.andi-hero { background: var(--papel); }
+.andi-hero-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 20px;
-  max-width: 480px;
-  padding-top: 96px;
-  padding-bottom: 96px;
+  gap: 40px;
+  padding-top: 64px;
+  padding-bottom: 76px;
 }
-.andi-title { margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 40px; letter-spacing: -0.01em; color: var(--papel); }
-.andi-text { margin: 0; font-weight: 400; font-size: 17px; line-height: 1.6; color: #A9A6B3; }
-.back-link { color: #B7B3C0; font-weight: 500; font-size: 14px; margin-top: 4px; }
+.back-link { align-self: flex-start; color: var(--gris); font-weight: 500; font-size: 14px; }
+.andi-headline {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+}
+
+.feature-cards { display: flex; gap: 24px; width: 100%; }
+.feature-card {
+  flex: 1;
+  background: #F1EEF7;
+  border: 1px solid #E7E4ED;
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 14px;
+}
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #E3DDFA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.feature-title { margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--tinta); }
+.feature-desc { margin: 0; font-size: 14px; line-height: 1.6; color: var(--gris); }
 
 /* RESPONSIVE */
 @media (max-width: 899px) {
   .hero-inner { flex-direction: column; align-items: stretch; }
   .agentes-cards { flex-direction: column; }
+  .feature-cards { flex-direction: column; }
 }
 
 @media (max-width: 599px) {
