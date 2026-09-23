@@ -376,6 +376,8 @@ button { font-family: inherit; }
 .mini-schedule-cell.off { background: transparent; }
 .mini-schedule-cell.highlight-lila { background: var(--lila); color: #17141F; font-weight: 700; }
 .mini-schedule-cell.highlight-lima { background: var(--lima); color: var(--tinta); font-weight: 700; }
+/* Anillo sutil sobre el turno de Mateo en el paso "Camila revisa el cuadrante": llama la atención sin pisar el relleno lila/lima que ya usa el estado "después" */
+.mini-schedule-cell.spotlight { box-shadow: 0 0 0 2px var(--tinta); }
 
 /* [hidden] debe ganarle a .phone-banner{display:flex}, si no el atributo hidden queda sin efecto */
 .phone-banner[hidden] { display: none; }

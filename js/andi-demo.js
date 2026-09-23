@@ -248,7 +248,7 @@
 
     if (variant === "before") {
       buildRow(EJ.camila, CAMILA_PATRON, "", "");
-      buildRow(EJ.mateo, MATEO_PATRON, "highlight-lila", "06–14");
+      buildRow(EJ.mateo, MATEO_PATRON, "highlight-lila spotlight", "06–14");
     } else {
       buildRow(EJ.camila, CAMILA_PATRON, "highlight-lima", "06–14");
       buildRow(EJ.mateo, MATEO_PATRON, "highlight-lima", "14–22");
