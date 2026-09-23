@@ -5,6 +5,7 @@
 <title>Andi — Conversa</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Andi, el agente de Conversa para la gestión de turnos de tu equipo por WhatsApp.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -28,10 +29,118 @@
 </header>
 
 <main>
-  <section class="andi-hero">
-    <div class="container andi-hero-inner">
-      <a class="back-link" href="index.html">← Volver a Conversa</a>
-      <h1 class="andi-headline">Conversa y punto.</h1>
+  <section class="scrolly" id="scrolly">
+    <div class="container scrolly-inner">
+      <div class="scrolly-text">
+
+        <div class="scrolly-step scrolly-hero" data-step="0">
+          <h1 class="andi-headline">Conversa y punto.</h1>
+          <p class="scrolly-hero-subtitle">Andi organiza los cambios de turno de tu equipo por WhatsApp. Baja y mira cómo funciona.</p>
+          <a class="btn btn-primary" href="https://wa.me/573150940607?text=Hola%2C%20quiero%20conocer%20a%20Andi" data-wa-msg="Hola, quiero conocer a Andi">Escríbenos por WhatsApp</a>
+        </div>
+
+        <div class="scrolly-step" data-step="1">
+          <h2>Dos lados, un mismo chat</h2>
+          <p>Cada cambio de turno involucra a dos personas: quien pide el cambio y su jefe. Andi habla con ambos, cada uno desde su propio chat de WhatsApp.</p>
+        </div>
+
+        <div class="scrolly-step" data-step="2">
+          <h2>Tú decides las reglas</h2>
+          <p>Cada negocio configura si los cambios se aprueban solos o si el jefe debe autorizarlos primero. Prueba el selector.</p>
+        </div>
+
+        <div class="scrolly-step" data-step="3">
+          <h2>Camila revisa el cuadrante</h2>
+          <p>Camila ve el horario de la semana y nota que el turno de Mateo del jueves le sirve mejor que el suyo.</p>
+        </div>
+
+        <div class="scrolly-step" data-step="4">
+          <h2>Lo pide por WhatsApp</h2>
+          <p>Camila le escribe a Andi. Sin apps nuevas, sin llamadas ni grupos: solo un mensaje.</p>
+        </div>
+
+        <div class="scrolly-step" data-step="5">
+          <h2 data-copy-aprobacion="El jefe aprueba el cambio" data-copy-automatico="El cambio se confirma solo">El jefe aprueba el cambio</h2>
+          <p data-copy-aprobacion="Andi le manda la solicitud a Carlos con todos los datos. Él responde y listo." data-copy-automatico="Como el modo es automático, Andi confirma el cambio al instante. Carlos solo recibe un aviso.">Andi le manda la solicitud a Carlos con todos los datos. Él responde y listo.</p>
+        </div>
+
+        <div class="scrolly-step" data-step="6">
+          <h2>Todos quedan al día</h2>
+          <p>Camila, Mateo y Carlos quedan informados, y el cuadrante se actualiza solo — sin planillas ni grupos de WhatsApp.</p>
+        </div>
+
+      </div>
+
+      <div class="scrolly-sticky">
+        <div class="phone-tabs" id="phoneTabs">
+          <button type="button" class="phone-tab active" data-target="jefe">Jefe</button>
+          <button type="button" class="phone-tab" data-target="camila">Camila</button>
+        </div>
+
+        <div class="mode-toggle" id="modeToggle">
+          <button type="button" class="mode-toggle-btn" data-mode="automatico">Automático</button>
+          <button type="button" class="mode-toggle-btn active" data-mode="aprobacion">Con aprobación</button>
+        </div>
+
+        <div class="phones-wrap" id="phonesWrap">
+          <div class="phone-slot" data-phone="jefe">
+            <div class="phone-label">Jefe · Carlos</div>
+            <div class="phone demo-phone">
+              <div class="phone-screen">
+                <div class="chat-header">
+                  <div class="chat-avatar">
+                    <svg viewBox="0 0 100 100" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Logo de Andi">
+                      <path d="M 50 25 L 29 74"></path>
+                      <path d="M 50 25 L 71 74"></path>
+                      <circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"></circle>
+                    </svg>
+                  </div>
+                  <div class="chat-header-text">
+                    <span class="chat-name">Andi · Conversa</span>
+                    <span class="chat-status">en línea</span>
+                  </div>
+                </div>
+                <div class="chat-messages" id="messagesJefe"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="phone-slot" data-phone="camila">
+            <div class="phone-label">Empleada · Camila</div>
+            <div class="phone demo-phone phone-with-banner">
+              <div class="phone-banner" id="bannerMateo" hidden>
+                <span class="phone-banner-icon">📲</span>
+                <div class="phone-banner-text">
+                  <strong>Mateo</strong>
+                  <span>Tu cambio con Camila quedó aprobado. Ahora tienes jueves 14:00–22:00, que te cedió Camila.</span>
+                </div>
+              </div>
+              <div class="phone-screen">
+                <div class="chat-header">
+                  <div class="chat-avatar">
+                    <svg viewBox="0 0 100 100" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Logo de Andi">
+                      <path d="M 50 25 L 29 74"></path>
+                      <path d="M 50 25 L 71 74"></path>
+                      <circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"></circle>
+                    </svg>
+                  </div>
+                  <div class="chat-header-text">
+                    <span class="chat-name">Andi · Conversa</span>
+                    <span class="chat-status">en línea</span>
+                  </div>
+                </div>
+                <div class="chat-messages" id="messagesCamila"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="andi-features">
+    <div class="container andi-features-inner">
       <div class="feature-cards">
         <article class="feature-card">
           <div class="feature-icon">⏱</div>
@@ -53,6 +162,27 @@
   </section>
 </main>
 
+<footer id="contacto" class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 100 100" width="22" height="22" fill="none" role="img" aria-label="Logo de Conversa">
+          <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"></circle>
+          <circle cx="78" cy="62" r="8" fill="#E8F76B"></circle>
+        </svg>
+        <span class="brand-name brand-name-sm">Conversa</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="https://wa.me/573150940607?text=Hola%2C%20quiero%20conocer%20Conversa" data-wa-msg="Hola, quiero conocer Conversa">WhatsApp</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+    <div class="footer-divider"></div>
+    <span class="footer-copy">© 2026 Conversa. Conversa y punto.</span>
+  </div>
+</footer>
+
 <script src="js/whatsapp.js"></script>
+<script src="js/andi-demo.js"></script>
 </body>
 </html>

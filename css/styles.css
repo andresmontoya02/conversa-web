@@ -17,6 +17,7 @@ body {
 }
 
 a { text-decoration: none; }
+button { font-family: inherit; }
 
 .container {
   max-width: 1200px;
@@ -212,18 +213,15 @@ a { text-decoration: none; }
 .footer-divider { width: 100%; height: 1px; background: #211E29; }
 .footer-copy { font-size: 12px; color: var(--gris); }
 
-/* PÁGINA ANDI */
-.andi-hero { background: var(--papel); }
-.andi-hero-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 40px;
-  padding-top: 64px;
-  padding-bottom: 76px;
-}
-.back-link { align-self: flex-start; color: var(--gris); font-weight: 500; font-size: 14px; }
+/* PÁGINA ANDI — SCROLLYTELLING */
+.scrolly { background: var(--papel); }
+.scrolly-inner { display: flex; align-items: flex-start; gap: 56px; padding-top: 64px; padding-bottom: 64px; }
+
+.scrolly-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.scrolly-step { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.scrolly-step h2 { margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.01em; color: var(--tinta); }
+.scrolly-step p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--gris); max-width: 420px; }
+
 .andi-headline {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
@@ -232,7 +230,144 @@ a { text-decoration: none; }
   letter-spacing: -0.01em;
   color: var(--tinta);
 }
+.scrolly-hero-subtitle { margin: 0; font-size: 17px; line-height: 1.6; color: var(--gris); max-width: 440px; }
+.scrolly-hero .btn { width: fit-content; }
 
+/* Columna fija de celulares */
+.scrolly-sticky {
+  flex: 0 0 480px;
+  position: sticky;
+  top: 108px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.phone-tabs { display: none; }
+.phone-tab {
+  border: 1px solid #3A3644;
+  background: transparent;
+  color: var(--tinta);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+.phone-tab.active { background: var(--tinta); color: var(--papel); border-color: var(--tinta); }
+
+.mode-toggle {
+  display: flex;
+  gap: 8px;
+  background: #F1EEF7;
+  padding: 6px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+.mode-toggle.visible { opacity: 1; pointer-events: auto; }
+.mode-toggle-btn {
+  border: 1px solid #3A3644;
+  background: transparent;
+  color: var(--tinta);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+.mode-toggle-btn:not(.active):hover { color: var(--lila); border-color: var(--lila); }
+.mode-toggle-btn.active { background: var(--lima); color: var(--tinta); border-color: var(--lima); }
+
+.phones-wrap { display: flex; gap: 16px; align-items: flex-start; justify-content: center; width: 100%; }
+.phone-slot { display: flex; flex-direction: column; align-items: center; }
+.phone-label { font-weight: 600; font-size: 12px; color: var(--gris); margin-bottom: 8px; opacity: 0; transition: opacity 300ms ease; }
+.phone-label.visible { opacity: 1; }
+
+.demo-phone { width: 210px; }
+.demo-phone .phone-screen { height: 340px; min-height: 0; gap: 8px; }
+.phone-with-banner { position: relative; }
+
+/* Mensajes dentro del celular */
+.chat-messages { display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 0; overflow-y: auto; }
+.demo-phone .bubble { font-size: 12px; }
+
+.bubble-typing { display: flex; gap: 4px; align-items: center; padding: 10px 12px; }
+.bubble-typing .dot { width: 5px; height: 5px; border-radius: 999px; background: #A9A6B3; animation: dotPulse 1s infinite ease-in-out; }
+.bubble-typing .dot:nth-child(2) { animation-delay: 0.15s; }
+.bubble-typing .dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dotPulse { 0%, 80%, 100% { opacity: 0.3; } 40% { opacity: 1; } }
+
+.msg-enter { animation: msgIn 350ms ease forwards; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.msg-buttons { display: flex; gap: 6px; margin-top: 2px; }
+.msg-pill {
+  background: #FFFFFF;
+  border: 1px solid #D8D2EA;
+  color: #17141F;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+.msg-pill.tapped { background: var(--lima); border-color: var(--lima); color: var(--tinta); }
+
+.config-card { background: #FFFFFF; border: 1px solid #D8D2EA; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.config-card-title { font-size: 11px; font-weight: 700; color: #17141F; }
+.config-card-options { display: flex; gap: 6px; }
+.config-pill {
+  flex: 1;
+  border: 1px solid #D8D2EA;
+  background: #F6F4FC;
+  color: #17141F;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 6px 8px;
+  border-radius: 999px;
+  text-align: center;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+.config-pill.active { background: var(--lima); border-color: var(--lima); color: var(--tinta); }
+
+.mini-schedule { display: flex; flex-direction: column; gap: 2px; background: #FFFFFF; border-radius: 12px; padding: 8px; }
+.mini-schedule-row { display: flex; gap: 2px; }
+.mini-schedule-name { width: 34px; flex-shrink: 0; font-size: 8px; font-weight: 700; color: #17141F; display: flex; align-items: center; }
+.mini-schedule-cell { flex: 1; height: 20px; border-radius: 4px; background: #F1EEF7; display: flex; align-items: center; justify-content: center; font-size: 6px; color: var(--gris); }
+.mini-schedule-head .mini-schedule-cell { background: transparent; font-weight: 700; color: var(--gris); }
+.mini-schedule-cell.off { background: transparent; }
+.mini-schedule-cell.highlight-lila { background: var(--lila); color: #17141F; font-weight: 700; }
+.mini-schedule-cell.highlight-lima { background: var(--lima); color: var(--tinta); font-weight: 700; }
+
+.phone-banner {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -100%);
+  width: calc(100% - 16px);
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin-top: -10px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  z-index: 2;
+}
+.phone-banner-icon { font-size: 16px; line-height: 1; }
+.phone-banner-text { display: flex; flex-direction: column; gap: 2px; }
+.phone-banner-text strong { font-size: 11px; color: #17141F; }
+.phone-banner-text span { font-size: 10px; line-height: 1.4; color: #4A4753; }
+
+/* PÁGINA ANDI — FEATURES */
+.andi-features { background: var(--papel); }
+.andi-features-inner { padding: 0 56px 96px; }
 .feature-cards { display: flex; gap: 24px; width: 100%; }
 .feature-card {
   flex: 1;
@@ -259,15 +394,59 @@ a { text-decoration: none; }
 .feature-title { margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--tinta); }
 .feature-desc { margin: 0; font-size: 14px; line-height: 1.6; color: var(--gris); }
 
+/* Animación de "split" del celular (solo desktop) */
+@media (min-width: 900px) {
+  .phone-slot { transition: opacity 500ms ease, transform 500ms ease, flex 500ms ease, margin 500ms ease; flex: 1; }
+  .phones-wrap.solo .phone-slot[data-phone="jefe"] {
+    flex: 0 0 0;
+    opacity: 0;
+    transform: translateX(-16px);
+    overflow: hidden;
+    margin: 0;
+    pointer-events: none;
+  }
+  .phones-wrap.solo .phone-slot[data-phone="camila"] { margin: 0 auto; }
+}
+
 /* RESPONSIVE */
 @media (max-width: 899px) {
   .hero-inner { flex-direction: column; align-items: stretch; }
   .agentes-cards { flex-direction: column; }
   .feature-cards { flex-direction: column; }
+
+  .scrolly-inner { flex-direction: column-reverse; gap: 24px; }
+  .scrolly-sticky {
+    position: sticky;
+    top: 84px;
+    flex-basis: auto;
+    width: 100%;
+    z-index: 5;
+    background: var(--papel);
+    padding-bottom: 16px;
+    padding-top: 16px;
+  }
+  .scrolly-step { min-height: auto; padding: 40px 0; }
+  .phone-tabs { display: flex; gap: 8px; }
+  .phone-slot { display: none; }
+  .phone-slot.tab-active { display: flex; }
+  .demo-phone { width: min(240px, 70vw); }
+  .demo-phone .phone-screen { height: 46vh; }
 }
 
 @media (max-width: 599px) {
   .container { padding-left: 20px; padding-right: 20px; }
   .hero h1 { font-size: 40px; }
+  .andi-headline { font-size: 40px; }
   .header-nav .nav-link { display: none; }
+}
+
+/* ACCESIBILIDAD */
+@media (prefers-reduced-motion: reduce) {
+  .msg-enter { animation: none; opacity: 1; transform: none; }
+  .bubble-typing .dot { animation: none; }
+  .phone-slot, .phone-banner, .phone-label, .mode-toggle,
+  .btn-primary, .btn-secondary, .mode-toggle-btn, .phone-tab,
+  .msg-pill, .config-pill {
+    transition: none;
+  }
 }
