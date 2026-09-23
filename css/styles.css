@@ -118,6 +118,7 @@ button { font-family: inherit; }
   flex-direction: column;
   gap: 10px;
   min-height: 380px;
+  overflow: hidden;
 }
 .chat-header {
   display: flex;
@@ -233,9 +234,9 @@ button { font-family: inherit; }
 .scrolly-hero-subtitle { margin: 0; font-size: 17px; line-height: 1.6; color: var(--gris); max-width: 440px; }
 .scrolly-hero .btn { width: fit-content; }
 
-/* Columna fija de celulares */
+/* Columna fija de celulares (ancho fijo: 2 celulares de 290px + gap + margen, cabe en el content-box de 1088px del .container) */
 .scrolly-sticky {
-  flex: 0 0 480px;
+  flex: 0 0 620px;
   position: sticky;
   top: 108px;
   display: flex;
@@ -284,16 +285,25 @@ button { font-family: inherit; }
 .mode-toggle-btn.active { background: var(--lima); color: var(--tinta); border-color: var(--lima); }
 
 .phones-wrap { display: flex; gap: 16px; align-items: flex-start; justify-content: center; width: 100%; }
-.phone-slot { display: flex; flex-direction: column; align-items: center; }
+.phone-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  opacity: 0.9;
+  transform: scale(1);
+  transition: opacity 350ms ease, transform 350ms ease, flex 350ms ease, margin 350ms ease;
+}
+.phone-slot.is-focused { opacity: 1; transform: scale(1.03); }
 .phone-label { font-weight: 600; font-size: 12px; color: var(--gris); margin-bottom: 8px; opacity: 0; transition: opacity 300ms ease; }
 .phone-label.visible { opacity: 1; }
 
-.demo-phone { width: 210px; }
-.demo-phone .phone-screen { height: 340px; min-height: 0; gap: 8px; }
+.demo-phone { width: 290px; }
+.demo-phone .phone-screen { height: 400px; min-height: 0; gap: 8px; }
 .phone-with-banner { position: relative; }
 
-/* Mensajes dentro del celular */
-.chat-messages { display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 0; overflow-y: auto; }
+/* Mensajes dentro del celular: SOLO auto-scroll por JS, sin scroll del usuario */
+.chat-messages { display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 0; overflow: hidden; }
 .demo-phone .bubble { font-size: 12px; }
 
 .bubble-typing { display: flex; gap: 4px; align-items: center; padding: 10px 12px; }
@@ -304,9 +314,14 @@ button { font-family: inherit; }
 
 .msg-enter { animation: msgIn 350ms ease forwards; }
 @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+/* El banner ya tiene su propio transform de centrado (translateX(-50%)); msgIn lo pisaría */
+.phone-banner.msg-enter { animation: bannerIn 350ms ease forwards; }
+@keyframes bannerIn { from { opacity: 0; transform: translateX(-50%) translateY(8px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
 .msg-buttons { display: flex; gap: 6px; margin-top: 2px; }
 .msg-pill {
+  -webkit-appearance: none;
+  appearance: none;
   background: #FFFFFF;
   border: 1px solid #D8D2EA;
   color: #17141F;
@@ -314,15 +329,20 @@ button { font-family: inherit; }
   font-weight: 600;
   padding: 6px 12px;
   border-radius: 999px;
-  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease, opacity 200ms ease;
 }
+.msg-pill:hover:not(.tapped):not(.dimmed) { border-color: var(--lila); background: rgba(207, 198, 251, 0.18); }
+.msg-pill:focus-visible { outline: 2px solid var(--lila); outline-offset: 2px; }
 .msg-pill.tapped { background: var(--lima); border-color: var(--lima); color: var(--tinta); }
+.msg-pill.dimmed { opacity: 0.5; }
 
 .config-card { background: #FFFFFF; border: 1px solid #D8D2EA; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
 .config-card-title { font-size: 11px; font-weight: 700; color: #17141F; }
 .config-card-options { display: flex; gap: 6px; }
 .config-pill {
   flex: 1;
+  min-width: 0;
   border: 1px solid #D8D2EA;
   background: #F6F4FC;
   color: #17141F;
@@ -344,16 +364,18 @@ button { font-family: inherit; }
 .mini-schedule-cell.highlight-lila { background: var(--lila); color: #17141F; font-weight: 700; }
 .mini-schedule-cell.highlight-lima { background: var(--lima); color: var(--tinta); font-weight: 700; }
 
+/* [hidden] debe ganarle a .phone-banner{display:flex}, si no el atributo hidden queda sin efecto */
+.phone-banner[hidden] { display: none; }
 .phone-banner {
   position: absolute;
   left: 50%;
-  top: 0;
-  transform: translate(-50%, -100%);
+  top: 100%;
+  transform: translateX(-50%);
   width: calc(100% - 16px);
   background: #FFFFFF;
   border-radius: 14px;
   padding: 10px 12px;
-  margin-top: -10px;
+  margin-top: 10px;
   box-shadow: 0 12px 28px rgba(0,0,0,0.2);
   display: flex;
   gap: 8px;
@@ -367,7 +389,7 @@ button { font-family: inherit; }
 
 /* PÁGINA ANDI — FEATURES */
 .andi-features { background: var(--papel); }
-.andi-features-inner { padding: 0 56px 96px; }
+.andi-features-inner { padding: 64px 56px 40px; }
 .feature-cards { display: flex; gap: 24px; width: 100%; }
 .feature-card {
   flex: 1;
@@ -396,7 +418,6 @@ button { font-family: inherit; }
 
 /* Animación de "split" del celular (solo desktop) */
 @media (min-width: 900px) {
-  .phone-slot { transition: opacity 500ms ease, transform 500ms ease, flex 500ms ease, margin 500ms ease; flex: 1; }
   .phones-wrap.solo .phone-slot[data-phone="jefe"] {
     flex: 0 0 0;
     opacity: 0;
@@ -443,6 +464,7 @@ button { font-family: inherit; }
 /* ACCESIBILIDAD */
 @media (prefers-reduced-motion: reduce) {
   .msg-enter { animation: none; opacity: 1; transform: none; }
+  .phone-banner.msg-enter { transform: translateX(-50%); }
   .bubble-typing .dot { animation: none; }
   .phone-slot, .phone-banner, .phone-label, .mode-toggle,
   .btn-primary, .btn-secondary, .mode-toggle-btn, .phone-tab,

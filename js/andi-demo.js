@@ -28,23 +28,37 @@
       "La otra persona aceptó. Este cambio necesita aprobación de tu manager, te aviso apenas la tengamos.",
     camilaApproved:
       "Tu cambio con Mateo quedó aprobado. Mateo se hará cargo de tu turno del " + EJ.turnoCamila + ".",
+    camilaRejected: "Tu manager rechazó el cambio de turno.",
     jefeEscalation:
       "Solicitud #" + EJ.solicitudId + " necesita tu aprobación:\n" +
       "Camila cede " + EJ.turnoCamila + " → lo tomaría Mateo.\n" +
       "Responde *SI " + EJ.solicitudId + "* para aprobar o *NO " + EJ.solicitudId + "* para rechazar.",
     jefeAutoNotice:
       "Aviso: Camila y Mateo cambiaron su turno del jueves automáticamente. No necesitas hacer nada.",
+    mateoApproved:
+      "Tu cambio con Camila quedó aprobado. Ahora tienes " + EJ.turnoCamila + ", que te cedió Camila.",
+    mateoRejected: "Tu manager rechazó el cambio de turno.",
   };
 
   var SCROLLY_COPY = {
     5: {
       aprobacion: {
         title: "El jefe aprueba el cambio",
-        text: "Andi le manda la solicitud a Carlos con todos los datos. Él responde y listo.",
+        text: "Andi le manda la solicitud a Carlos con todos los datos. Toca Aprobar o Rechazar en su celular para ver cómo sigue la historia.",
       },
       automatico: {
         title: "El cambio se confirma solo",
         text: "Como el modo es automático, Andi confirma el cambio al instante. Carlos solo recibe un aviso.",
+      },
+    },
+    6: {
+      default: {
+        title: "Todos quedan al día",
+        text: "Camila, Mateo y Carlos quedan informados, y el cuadrante se actualiza solo — sin planillas ni grupos de WhatsApp.",
+      },
+      rechazar: {
+        title: "Esta vez no hubo cambio",
+        text: "Carlos rechazó la solicitud, así que el cuadrante queda igual. Camila y Mateo quedan al tanto por WhatsApp.",
       },
     },
   };
@@ -76,7 +90,8 @@
     bubbleItem("c-ack", 4, "in", TEXTOS.camilaAck),
     bubbleItem("c-pending", 5, "in", TEXTOS.camilaPending, "aprobacion"),
     bubbleItem("c-approved-auto", 5, "in", TEXTOS.camilaApproved, "automatico"),
-    bubbleItem("c-approved-final", 6, "in", TEXTOS.camilaApproved, "aprobacion"),
+    Object.assign(bubbleItem("c-approved-final", 6, "in", TEXTOS.camilaApproved, "aprobacion"), { hideOnReject: true }),
+    Object.assign(bubbleItem("c-rejected-final", 6, "in", TEXTOS.camilaRejected, "aprobacion"), { decision: "rechazar" }),
   ];
 
   /* ═══════════════════════════════════════════════════════════
@@ -94,12 +109,13 @@
     messagesJefe: document.getElementById("messagesJefe"),
     messagesCamila: document.getElementById("messagesCamila"),
     bannerMateo: document.getElementById("bannerMateo"),
+    bannerMateoText: document.getElementById("bannerMateoText"),
   };
 
   if (!els.scrolly) return;
   els.steps = els.scrolly.querySelectorAll(".scrolly-step");
 
-  var state = { step: -1, mode: "aprobacion" };
+  var state = { step: -1, mode: "aprobacion", decision: null };
   var rendered = { jefe: [], camila: [] };
   var bannerShown = false;
 
@@ -107,6 +123,8 @@
     return items.filter(function (item) {
       if (item.minStep > step) return false;
       if (item.mode && item.mode !== state.mode) return false;
+      if (item.decision && item.decision !== state.decision) return false;
+      if (item.hideOnReject && state.decision === "rechazar") return false;
       return true;
     });
   }
@@ -136,20 +154,23 @@
   function makeButtons() {
     var wrap = document.createElement("div");
     wrap.className = "msg-buttons";
-    var aprobar = document.createElement("span");
-    aprobar.className = "msg-pill";
-    aprobar.textContent = "Aprobar";
-    aprobar.dataset.choice = "aprobar";
-    var rechazar = document.createElement("span");
-    rechazar.className = "msg-pill";
-    rechazar.textContent = "Rechazar";
-    rechazar.dataset.choice = "rechazar";
-    wrap.appendChild(aprobar);
-    wrap.appendChild(rechazar);
-    var delay = REDUCED ? 0 : 650;
-    setTimeout(function () {
-      aprobar.classList.add("tapped");
-    }, delay);
+
+    function makePill(choice, label) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "msg-pill";
+      btn.textContent = label;
+      btn.dataset.choice = choice;
+      btn.setAttribute("aria-label", label + " la solicitud de cambio de turno");
+      if (state.decision) {
+        btn.classList.toggle("tapped", state.decision === choice);
+        btn.classList.toggle("dimmed", state.decision !== choice);
+      }
+      return btn;
+    }
+
+    wrap.appendChild(makePill("aprobar", "Aprobar"));
+    wrap.appendChild(makePill("rechazar", "Rechazar"));
     return wrap;
   }
 
@@ -224,7 +245,9 @@
   }
 
   function scheduleVariantForStep(step) {
-    return step >= 6 ? "after" : "before";
+    if (step < 6) return "before";
+    if (state.mode === "aprobacion" && state.decision === "rechazar") return "before";
+    return "after";
   }
 
   function buildItemNode(item) {
@@ -263,8 +286,6 @@
       done();
       return;
     }
-
-    setActiveTab(phone);
 
     var i = 0;
     function next() {
@@ -319,14 +340,19 @@
     if (wrap.dataset.variant !== variant) fillScheduleInto(wrap, variant);
   }
 
-  function updateScrollyCopy() {
-    var copy = SCROLLY_COPY[5][state.mode];
-    var stepEl = els.scrolly.querySelector('.scrolly-step[data-step="5"]');
+  function setStepCopy(step, copy) {
+    var stepEl = els.scrolly.querySelector('.scrolly-step[data-step="' + step + '"]');
     if (!stepEl) return;
     var h = stepEl.querySelector("h2");
     var p = stepEl.querySelector("p");
     if (h) h.textContent = copy.title;
     if (p) p.textContent = copy.text;
+  }
+
+  function updateScrollyCopy() {
+    setStepCopy(5, SCROLLY_COPY[5][state.mode]);
+    var rejected = state.mode === "aprobacion" && state.decision === "rechazar";
+    setStepCopy(6, rejected ? SCROLLY_COPY[6].rechazar : SCROLLY_COPY[6].default);
   }
 
   function updateModeToggleUI() {
@@ -348,8 +374,14 @@
     if (camilaLabel) camilaLabel.classList.toggle("visible", step >= 1);
   }
 
+  function bannerTextFor() {
+    if (state.mode === "aprobacion" && state.decision === "rechazar") return TEXTOS.mateoRejected;
+    return TEXTOS.mateoApproved;
+  }
+
   function updateBanner(step, animate) {
     var shouldShow = step >= 6;
+    if (shouldShow) els.bannerMateoText.textContent = bannerTextFor();
     if (shouldShow && !bannerShown) {
       els.bannerMateo.hidden = false;
       if (!REDUCED && animate) els.bannerMateo.classList.add("msg-enter");
@@ -361,6 +393,13 @@
     }
   }
 
+  /* Qué celular es protagonista en cada paso, para resaltarlo y (en móvil) cambiar de pestaña sola */
+  function activePhoneForStep(step) {
+    if (step === 1 || step === 2) return "jefe";
+    if (step === 5 && state.mode === "aprobacion") return "jefe";
+    return "camila";
+  }
+
   function setActiveTab(phone) {
     var tabs = els.phoneTabs.querySelectorAll(".phone-tab");
     tabs.forEach(function (t) {
@@ -368,19 +407,26 @@
     });
     var slots = els.phonesWrap.querySelectorAll(".phone-slot");
     slots.forEach(function (s) {
-      s.classList.toggle("tab-active", s.dataset.phone === phone);
+      var isThis = s.dataset.phone === phone;
+      s.classList.toggle("tab-active", isThis);
+      s.classList.toggle("is-focused", isThis);
     });
   }
 
   function goToStep(step, animate) {
     var forward = step > state.step;
     state.step = step;
+    if (step < 5 && state.decision !== null) {
+      state.decision = null;
+      updateScrollyCopy();
+    }
     updatePhonesSoloClass(step);
     updateModeToggleVisibility(step);
     updatePhone("jefe", step, animate && forward);
     updatePhone("camila", step, animate && forward);
     refreshSchedule(step);
     updateBanner(step, animate && forward);
+    setActiveTab(activePhoneForStep(step));
   }
 
   function setMode(mode) {
@@ -392,6 +438,20 @@
     instantRebuild("camila", applicableItems(CAMILA_ITEMS, state.step));
     refreshSchedule(state.step);
     updateBanner(state.step, false);
+    setActiveTab(activePhoneForStep(state.step));
+  }
+
+  /* El visitante decide: Aprobar o Rechazar en el celular del jefe */
+  function choose(decision) {
+    if (state.mode !== "aprobacion") return;
+    state.decision = decision;
+    instantRebuild("jefe", applicableItems(JEFE_ITEMS, state.step));
+    updateScrollyCopy();
+    if (state.step >= 6) {
+      instantRebuild("camila", applicableItems(CAMILA_ITEMS, state.step));
+      refreshSchedule(state.step);
+      updateBanner(state.step, false);
+    }
   }
 
   /* Eventos */
@@ -405,6 +465,12 @@
     var btn = e.target.closest(".phone-tab");
     if (!btn) return;
     setActiveTab(btn.dataset.target);
+  });
+
+  els.messagesJefe.addEventListener("click", function (e) {
+    var btn = e.target.closest(".msg-pill");
+    if (!btn) return;
+    choose(btn.dataset.choice);
   });
 
   var observer = new IntersectionObserver(
@@ -427,6 +493,5 @@
   /* Estado inicial */
   updateModeToggleUI();
   updateScrollyCopy();
-  setActiveTab("camila");
   goToStep(0, false);
 })();
