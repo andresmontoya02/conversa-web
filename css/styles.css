@@ -215,13 +215,15 @@ button { font-family: inherit; }
 .footer-copy { font-size: 12px; color: var(--gris); }
 
 /* PÁGINA ANDI — SCROLLYTELLING */
-.scrolly { background: var(--papel); }
+.scrolly { background: linear-gradient(135deg, #CFC6FB 0%, #E8F76B 100%); }
 .scrolly-inner { display: flex; align-items: flex-start; gap: 56px; padding-top: 64px; padding-bottom: 64px; }
 
 .scrolly-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .scrolly-step { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
 .scrolly-step h2 { margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.01em; color: var(--tinta); }
 .scrolly-step p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--gris); max-width: 420px; }
+/* Contraste sobre el degradado lila/lima: los párrafos de los pasos (no el hero) usan un gris más oscuro */
+.scrolly-step:not(.scrolly-hero) p { color: #4A4753; }
 
 .andi-headline {
   margin: 0;
@@ -234,15 +236,19 @@ button { font-family: inherit; }
 .scrolly-hero-subtitle { margin: 0; font-size: 17px; line-height: 1.6; color: var(--gris); max-width: 440px; }
 .scrolly-hero .btn { width: fit-content; }
 
+/* Resaltes de texto dentro del tutorial: tinta sobre el degradado, contrasta en la zona lila y en la lima */
+.scrolly-step .hl { color: var(--tinta); font-weight: 700; }
+.scrolly-step .hl-underline { color: var(--tinta); font-weight: 700; text-decoration: underline; }
+
 /* Columna fija de celulares (ancho fijo: 2 celulares de 290px + gap + margen, cabe en el content-box de 1088px del .container) */
 .scrolly-sticky {
   flex: 0 0 620px;
   position: sticky;
-  top: 108px;
+  top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .phone-tabs { display: none; }
@@ -263,7 +269,7 @@ button { font-family: inherit; }
   display: flex;
   gap: 8px;
   background: #F1EEF7;
-  padding: 6px;
+  padding: 5px;
   border-radius: 999px;
   opacity: 0;
   pointer-events: none;
@@ -276,7 +282,7 @@ button { font-family: inherit; }
   color: var(--tinta);
   font-weight: 600;
   font-size: 13px;
-  padding: 8px 16px;
+  padding: 6px 16px;
   border-radius: 999px;
   cursor: pointer;
   transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
@@ -295,11 +301,11 @@ button { font-family: inherit; }
   transition: opacity 350ms ease, transform 350ms ease, flex 350ms ease, margin 350ms ease;
 }
 .phone-slot.is-focused { opacity: 1; transform: scale(1.03); }
-.phone-label { font-weight: 600; font-size: 12px; color: var(--gris); margin-bottom: 8px; opacity: 0; transition: opacity 300ms ease; }
+.phone-label { font-weight: 600; font-size: 12px; color: var(--gris); margin-bottom: 4px; opacity: 0; transition: opacity 300ms ease; }
 .phone-label.visible { opacity: 1; }
 
-.demo-phone { width: 290px; }
-.demo-phone .phone-screen { height: 400px; min-height: 0; gap: 8px; }
+.demo-phone { width: 290px; padding: 10px; }
+.demo-phone .phone-screen { height: 610px; min-height: 0; gap: 8px; }
 .phone-with-banner { position: relative; }
 
 /* Mensajes dentro del celular: SOLO auto-scroll por JS, sin scroll del usuario */
@@ -314,11 +320,18 @@ button { font-family: inherit; }
 
 .msg-enter { animation: msgIn 350ms ease forwards; }
 @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Burbuja de confirmación: entrada con un pequeño "pop" para que se sienta como un alivio */
+.msg-pop { animation: msgPop 380ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+@keyframes msgPop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 /* El banner ya tiene su propio transform de centrado (translateX(-50%)); msgIn lo pisaría */
 .phone-banner.msg-enter { animation: bannerIn 350ms ease forwards; }
 @keyframes bannerIn { from { opacity: 0; transform: translateX(-50%) translateY(8px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
-.msg-buttons { display: flex; gap: 6px; margin-top: 2px; }
+.msg-buttons-block { display: flex; flex-direction: column; gap: 6px; margin-top: 2px; }
+.msg-buttons { display: flex; gap: 6px; }
+.decision-note { display: flex; align-items: center; gap: 5px; color: var(--tinta); font-weight: 700; font-size: 10px; }
+.decision-note svg { flex-shrink: 0; }
 .msg-pill {
   -webkit-appearance: none;
   appearance: none;
@@ -387,9 +400,9 @@ button { font-family: inherit; }
 .phone-banner-text strong { font-size: 11px; color: #17141F; }
 .phone-banner-text span { font-size: 10px; line-height: 1.4; color: #4A4753; }
 
-/* PÁGINA ANDI — FEATURES */
-.andi-features { background: var(--papel); }
-.andi-features-inner { padding: 64px 56px 40px; }
+/* PÁGINA ANDI — FEATURES (pausa dentro de la columna de texto del tutorial, entre el hero y el paso 1) */
+.scrolly-cards { padding: 24px 0 40px; min-height: 0; }
+.scrolly-cards .feature-cards { flex-direction: column; gap: 16px; }
 .feature-cards { display: flex; gap: 24px; width: 100%; }
 .feature-card {
   flex: 1;
@@ -464,6 +477,7 @@ button { font-family: inherit; }
 /* ACCESIBILIDAD */
 @media (prefers-reduced-motion: reduce) {
   .msg-enter { animation: none; opacity: 1; transform: none; }
+  .msg-pop { animation: none; opacity: 1; transform: none; }
   .phone-banner.msg-enter { transform: translateX(-50%); }
   .bubble-typing .dot { animation: none; }
   .phone-slot, .phone-banner, .phone-label, .mode-toggle,
