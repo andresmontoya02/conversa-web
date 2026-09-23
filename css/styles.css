@@ -41,6 +41,15 @@ a { text-decoration: none; }
 
 .btn { display: inline-block; }
 .btn-primary { background: var(--lima); color: var(--tinta); font-weight: 700; font-size: 15px; padding: 14px 24px; border-radius: 12px; }
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #3A3644;
+  color: var(--papel);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 24px;
+  border-radius: 12px;
+}
 .btn-sm { font-size: 13px; padding: 10px 18px; border-radius: 10px; }
 
 /* HERO */
@@ -78,15 +87,6 @@ a { text-decoration: none; }
 .hero p { margin: 0; font-weight: 400; font-size: 17px; line-height: 1.6; color: #A9A6B3; max-width: 460px; }
 
 .hero-actions { display: flex; gap: 14px; margin-top: 6px; }
-.btn-secondary {
-  background: transparent;
-  border: 1px solid #3A3644;
-  color: var(--papel);
-  font-weight: 600;
-  font-size: 15px;
-  padding: 14px 24px;
-  border-radius: 12px;
-}
 
 .hero-phone-wrap { flex: 0.9; display: flex; justify-content: center; }
 
