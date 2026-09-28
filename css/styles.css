@@ -9,6 +9,11 @@
 
 * { box-sizing: border-box; }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px; /* altura del header fijo, para que los links del nav no lo tapen */
+}
+
 body {
   margin: 0;
   background: var(--papel);
@@ -26,7 +31,13 @@ button { font-family: inherit; }
 }
 
 /* HEADER */
-.site-header { background: var(--tinta); }
+.site-header {
+  background: var(--tinta);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 8px 24px rgba(10, 10, 11, 0.18);
+}
 .header-inner {
   height: 84px;
   display: flex;
@@ -74,18 +85,6 @@ button { font-family: inherit; }
 }
 .hero-copy { flex: 1.1; display: flex; flex-direction: column; gap: 22px; }
 
-.badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: fit-content;
-  background: rgba(207,198,251,0.14);
-  padding: 7px 14px;
-  border-radius: 999px;
-}
-.badge-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--lima); }
-.badge span:last-child { font-weight: 600; font-size: 12px; letter-spacing: 0.03em; color: var(--lila); }
-
 .hero h1 {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
@@ -105,10 +104,13 @@ button { font-family: inherit; }
 .phone {
   width: 300px;
   border-radius: 34px;
-  background: #0F0D14;
-  border: 1px solid #2A2632;
+  background: linear-gradient(160deg, #1B1824 0%, #0F0D14 55%, #0C0A10 100%);
+  border: 1px solid #2E2A38;
   padding: 14px;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+  box-shadow:
+    0 30px 70px rgba(10, 8, 16, 0.55),
+    0 10px 26px rgba(207, 198, 251, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 .phone-screen {
   background: #E9E5F4;
@@ -119,13 +121,32 @@ button { font-family: inherit; }
   gap: 10px;
   min-height: 380px;
   overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
+.phone-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px 2px;
+}
+.phone-statusbar-time { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px; color: #17141F; }
+.phone-statusbar-icons { display: flex; align-items: center; gap: 5px; }
 .chat-header {
   display: flex;
   align-items: center;
   gap: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #D8D2EA;
+}
+.chat-back { flex-shrink: 0; }
+.chat-header-actions { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+.phone-home-indicator {
+  width: 120px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(23, 20, 32, 0.22);
+  margin: 4px auto 0;
+  flex-shrink: 0;
 }
 .chat-avatar {
   width: 34px;
@@ -255,7 +276,8 @@ button { font-family: inherit; }
 .scrolly-sticky {
   flex: 0 0 620px;
   position: sticky;
-  top: 80px;
+  top: 84px; /* pegado justo debajo del header, ahora que .site-header también es sticky */
+  padding-top: 24px; /* separación del header fijo — el mode-toggle es el primer elemento visible en desktop */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -484,7 +506,7 @@ button { font-family: inherit; }
     z-index: 5;
     background: var(--papel);
     padding-bottom: 16px;
-    padding-top: 16px;
+    padding-top: 24px;
   }
   .scrolly-step { min-height: auto; padding: 40px 0; }
   .phone-tabs { display: flex; gap: 8px; }
@@ -524,6 +546,7 @@ button { font-family: inherit; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .msg-enter { animation: none; opacity: 1; transform: none; }
   .msg-pop { animation: none; opacity: 1; transform: none; }
   .phone-banner.msg-enter { transform: translateX(-50%); }
