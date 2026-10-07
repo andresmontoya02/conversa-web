@@ -4,5 +4,8 @@
   "assets": {
     "directory": "."
   },
+  "observability": {
+    "enabled": true
+  },
   "previews": {}
 }
