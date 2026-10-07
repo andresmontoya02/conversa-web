@@ -7,60 +7,121 @@
 <meta name="description" content="Andi, el agente de Conversa para la gestión de turnos de tu equipo por WhatsApp.">
 <meta name="google-site-verification" content="Ja4Rn6n4qUlso83JG4or7ZB8KEGTxTbLcKheIMZyKb4" />
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/andi.css">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Volver a Conversa">
-      <svg class="logo" viewBox="0 0 100 100" width="30" height="30" fill="none" role="img" aria-label="Logo de Conversa">
-        <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"></circle>
-        <circle cx="78" cy="62" r="8" fill="#E8F76B"></circle>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="marca" href="/" aria-label="Conversa, inicio">
+      <svg viewBox="0 0 100 100" width="30" height="30" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"/>
+        <circle cx="78" cy="62" r="8" fill="#E8F76B"/>
       </svg>
-      <span class="brand-name">Conversa</span>
+      Conversa
     </a>
-    <nav class="header-nav">
-      <!-- TODO: apuntar al dashboard real cuando esté conectado -->
-      <a class="btn btn-secondary btn-sm" href="#">Iniciar sesión</a>
-      <a class="btn btn-primary btn-sm" href="https://wa.me/573053060642?text=Hola%2C%20quiero%20conocer%20a%20Andi" data-wa-msg="Hola, quiero conocer a Andi">Hablar por WhatsApp</a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="/#agentes">Agentes</a>
+      <a href="/#por-que">Por qué WhatsApp</a>
+      <a href="#contacto">Contacto</a>
     </nav>
+    <div class="nav-acciones">
+      <a class="btn btn-borde btn-sm" href="/login.html">Iniciar sesión</a>
+      <a class="btn btn-lima btn-sm" href="https://wa.me/573053060642?text=Hola%2C%20quiero%20conocer%20a%20Andi" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
   </div>
 </header>
 
-<main>
+<main id="contenido">
+  <section class="pop-hero">
+    <div class="wrap">
+      <span class="pop-badge"><span class="av"><svg viewBox="0 0 100 100" width="14" height="14" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M 50 25 L 29 74"/><path d="M 50 25 L 71 74"/><circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"/></svg></span><span><b>Andi</b> · el agente de turnos de Conversa</span></span>
+      <h1 class="pop-titulo">Cambios de turno <span class="resalta">sin el drama.</span></h1>
+      <p class="pop-sub">Tu equipo pide, cambia y confirma turnos por WhatsApp. Andi organiza todo y le avisa al jefe solo cuando hace falta.</p>
+      <div class="pop-acciones">
+        <a class="btn btn-tinta" href="https://wa.me/573053060642?text=Hola%2C%20quiero%20conocer%20a%20Andi" target="_blank" rel="noopener"><span class="punto"></span>Escríbele a Andi</a>
+        <a class="btn btn-borde" href="#scrolly">Ver cómo funciona</a>
+      </div>
+      <div class="pop-abanico" aria-label="Ejemplo: Camila pide un cambio, Carlos lo aprueba y Mateo queda al día">
+          <figure class="pop-tel t-izq">
+            <div class="pt-marco"><div class="pt-pantalla">
+              <div class="pt-top"><span class="pt-av"><svg viewBox="0 0 100 100" width="14" height="14" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M 50 25 L 29 74"/><path d="M 50 25 L 71 74"/><circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"/></svg></span><b>Andi</b><small>en línea</small></div>
+              <div class="pt-msgs"><p class="o">Quiero cambiar mi turno del jueves con Mateo</p><p class="i">Listo. Le pregunto a Mateo y te aviso apenas responda.</p></div>
+            </div></div>
+            <figcaption>Camila pide el cambio</figcaption>
+          </figure>
+          <figure class="pop-tel t-centro">
+            <div class="pt-marco"><div class="pt-pantalla">
+              <div class="pt-top"><span class="pt-av"><svg viewBox="0 0 100 100" width="14" height="14" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M 50 25 L 29 74"/><path d="M 50 25 L 71 74"/><circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"/></svg></span><b>Andi</b><small>en línea</small></div>
+              <div class="pt-msgs"><p class="i">Solicitud #128: Camila cede jueves 14:00–22:00 → lo tomaría Mateo.</p><div class="pt-btns"><span class="si">Aprobar</span><span>Rechazar</span></div></div>
+            </div></div>
+            <figcaption>Carlos lo aprueba</figcaption>
+          </figure>
+          <figure class="pop-tel t-der">
+            <div class="pt-marco"><div class="pt-pantalla">
+              <div class="pt-top"><span class="pt-av"><svg viewBox="0 0 100 100" width="14" height="14" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M 50 25 L 29 74"/><path d="M 50 25 L 71 74"/><circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"/></svg></span><b>Andi</b><small>en línea</small></div>
+              <div class="pt-msgs"><p class="i">Tu cambio con Camila quedó aprobado. Ahora tienes el jueves 14:00–22:00. ✅</p></div>
+            </div></div>
+            <figcaption>Mateo queda al día</figcaption>
+          </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="pop-seccion">
+    <div class="wrap">
+      <div class="pop-cabeza">
+        <h2>Todo pasa en WhatsApp.</h2>
+        <p>Nada que instalar, nada que aprender. Así se siente para tu equipo.</p>
+      </div>
+      <div class="pop-grid">
+        <article class="pop-card">
+          <div class="pc-prev">
+            <div class="mini-cuadro">
+              <div class="mc-f mc-h"><span></span><i>L</i><i>M</i><i>X</i><i>J</i><i>V</i></div>
+              <div class="mc-f"><span>Camila</span><i class="on"></i><i></i><i></i><i class="lima">06–14</i><i class="on"></i></div>
+              <div class="mc-f"><span>Mateo</span><i></i><i class="on"></i><i></i><i class="lima">14–22</i><i class="on"></i></div>
+            </div>
+          </div>
+          <h3>Cambios de turno sin caos</h3>
+          <p>Tu equipo pide, cambia y confirma turnos por WhatsApp, y el cuadrante se actualiza solo.</p>
+        </article>
+        <article class="pop-card">
+          <div class="pc-prev">
+            <div class="mini-chat"><p class="o">¿Puedo cambiar el sábado?</p><p class="i">Claro. ¿Con quién quieres cambiar?</p></div>
+          </div>
+          <h3>Cero apps nuevas</h3>
+          <p>Nada de instalar ni loguearse en otra plataforma. Si tu equipo usa WhatsApp, ya sabe usar Andi.</p>
+        </article>
+        <article class="pop-card">
+          <div class="pc-prev">
+            <div class="mini-chat"><p class="i">Solicitud #128 necesita tu aprobación.</p><div class="pt-btns"><span class="si">Aprobar</span><span>Rechazar</span></div></div>
+          </div>
+          <h3>Tú pones las reglas</h3>
+          <p>Decide si los cambios se aprueban solos o si el jefe debe autorizarlos primero.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="scrolly" id="scrolly">
-    <div class="container scrolly-inner">
+    <div class="wrap scrolly-inner">
       <div class="scrolly-text">
 
-        <div class="scrolly-step scrolly-hero" data-step="0">
-          <h1 class="andi-headline">Conversa y punto.</h1>
-          <p class="scrolly-hero-subtitle"><span class="hl">Andi</span> organiza los cambios de turno de tu equipo por WhatsApp. <span class="hl">Baja y mira cómo funciona</span>.</p>
-          <a class="btn btn-primary" href="https://wa.me/573053060642?text=Hola%2C%20quiero%20conocer%20a%20Andi" data-wa-msg="Hola, quiero conocer a Andi">Escríbele a Andi</a>
-        </div>
-
-        <div class="scrolly-cards">
-          <div class="feature-cards">
-            <article class="feature-card">
-              <div class="feature-icon">⏱</div>
-              <h3 class="feature-title">Cambios de turno sin caos</h3>
-              <p class="feature-desc">Tu equipo pide, cambia y confirma turnos por WhatsApp, y todo queda organizado solo.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">💬</div>
-              <h3 class="feature-title">Todo por WhatsApp, cero apps nuevas</h3>
-              <p class="feature-desc">Nada de instalar ni loguearse en otra plataforma. Si tu equipo ya usa WhatsApp, ya sabe usar Conversa.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">✓</div>
-              <h3 class="feature-title">Tu equipo ya sabe usarlo</h3>
-              <p class="feature-desc">Sin curva de aprendizaje ni capacitaciones. Escriben como le escriben a cualquier persona.</p>
-            </article>
-          </div>
+        <div class="scrolly-step paso-intro" data-step="0">
+          <span class="num">Míralo funcionar</span>
+          <h2>Un cambio de turno, de principio a fin.</h2>
+          <p>Baja despacio: los chats avanzan contigo. Así le llega a cada persona, cada una en su propio WhatsApp.</p>
         </div>
 
         <div class="scrolly-step" data-step="1">
+          <span class="num">Cómo funciona</span>
           <h2>Dos lados, <span class="hl-underline">un mismo chat</span></h2>
           <p>Cada cambio de turno involucra a dos personas: quien pide el cambio y su jefe. Andi habla con ambos, cada uno desde su propio chat de WhatsApp.</p>
         </div>
@@ -93,14 +154,15 @@
       </div>
 
       <div class="scrolly-sticky">
-        <div class="phone-tabs" id="phoneTabs">
-          <button type="button" class="phone-tab active" data-target="jefe">Jefe</button>
-          <button type="button" class="phone-tab" data-target="camila">Camila</button>
-        </div>
-
-        <div class="mode-toggle" id="modeToggle">
-          <button type="button" class="mode-toggle-btn" data-mode="automatico">Automático</button>
-          <button type="button" class="mode-toggle-btn active" data-mode="aprobacion">Con aprobación</button>
+        <div class="controles">
+          <div class="phone-tabs segmentado" id="phoneTabs" role="group" aria-label="Ver celular">
+            <button type="button" class="phone-tab active" data-target="jefe">Jefe</button>
+            <button type="button" class="phone-tab" data-target="camila">Camila</button>
+          </div>
+          <div class="mode-toggle segmentado" id="modeToggle" role="group" aria-label="Modo de aprobación">
+            <button type="button" class="mode-toggle-btn" data-mode="automatico">Automático</button>
+            <button type="button" class="mode-toggle-btn active" data-mode="aprobacion">Con aprobación</button>
+          </div>
         </div>
 
         <div class="phones-wrap" id="phonesWrap">
@@ -110,37 +172,13 @@
               <div class="phone-screen">
                 <div class="phone-statusbar" aria-hidden="true">
                   <span class="phone-statusbar-time">9:41</span>
-                  <div class="phone-statusbar-icons">
-                    <svg viewBox="0 0 18 12" width="16" height="11" fill="none" aria-hidden="true">
-                      <rect x="0" y="7" width="3" height="5" rx="0.5" fill="#17141F"></rect>
-                      <rect x="5" y="5" width="3" height="7" rx="0.5" fill="#17141F"></rect>
-                      <rect x="10" y="3" width="3" height="9" rx="0.5" fill="#17141F"></rect>
-                      <rect x="15" y="0" width="3" height="12" rx="0.5" fill="#17141F"></rect>
-                    </svg>
-                    <svg viewBox="0 0 20 14" width="17" height="12" fill="none" aria-hidden="true">
-                      <path d="M1 5.5a13 13 0 0 1 18 0" stroke="#17141F" stroke-width="1.6" stroke-linecap="round"></path>
-                      <path d="M4.5 8.7a8 8 0 0 1 11 0" stroke="#17141F" stroke-width="1.6" stroke-linecap="round"></path>
-                      <circle cx="10" cy="12" r="1.4" fill="#17141F"></circle>
-                    </svg>
-                    <svg viewBox="0 0 25 12" width="21" height="10" fill="none" aria-hidden="true">
-                      <rect x="0.75" y="0.75" width="20.5" height="10.5" rx="2.5" stroke="#17141F" stroke-width="1.2"></rect>
-                      <rect x="2.5" y="2.5" width="14" height="7" rx="1.2" fill="#17141F"></rect>
-                      <rect x="22.5" y="4" width="1.8" height="4" rx="0.9" fill="#17141F"></rect>
-                    </svg>
-                  </div>
+                  <span style="font-size:11px">●●● ▮</span>
                 </div>
                 <div class="chat-header">
                   <div class="chat-avatar">
-                    <svg viewBox="0 0 100 100" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Logo de Andi">
-                      <path d="M 50 25 L 29 74"></path>
-                      <path d="M 50 25 L 71 74"></path>
-                      <circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"></circle>
-                    </svg>
+                    <svg viewBox="0 0 100 100" width="18" height="18" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M 50 25 L 29 74"/><path d="M 50 25 L 71 74"/><circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"/></svg>
                   </div>
-                  <div class="chat-header-text">
-                    <span class="chat-name">Andi · Conversa</span>
-                    <span class="chat-status">en línea</span>
-                  </div>
+                  <div class="chat-header-text"><span class="chat-name">Andi · Conversa</span><span class="chat-status">en línea</span></div>
                 </div>
                 <div class="chat-messages" id="messagesJefe"></div>
                 <div class="phone-home-indicator" aria-hidden="true"></div>
@@ -152,7 +190,7 @@
             <div class="phone-label">Empleada · Camila</div>
             <div class="phone demo-phone phone-with-banner">
               <div class="phone-banner" id="bannerMateo" hidden>
-                <span class="phone-banner-icon">📲</span>
+                <span class="phone-banner-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 1 3.3 6.5L4 20l1.4-3.4A8 8 0 0 1 4 12z"/></svg></span>
                 <div class="phone-banner-text">
                   <strong>Mateo</strong>
                   <span id="bannerMateoText"></span>
@@ -161,37 +199,13 @@
               <div class="phone-screen">
                 <div class="phone-statusbar" aria-hidden="true">
                   <span class="phone-statusbar-time">9:41</span>
-                  <div class="phone-statusbar-icons">
-                    <svg viewBox="0 0 18 12" width="16" height="11" fill="none" aria-hidden="true">
-                      <rect x="0" y="7" width="3" height="5" rx="0.5" fill="#17141F"></rect>
-                      <rect x="5" y="5" width="3" height="7" rx="0.5" fill="#17141F"></rect>
-                      <rect x="10" y="3" width="3" height="9" rx="0.5" fill="#17141F"></rect>
-                      <rect x="15" y="0" width="3" height="12" rx="0.5" fill="#17141F"></rect>
-                    </svg>
-                    <svg viewBox="0 0 20 14" width="17" height="12" fill="none" aria-hidden="true">
-                      <path d="M1 5.5a13 13 0 0 1 18 0" stroke="#17141F" stroke-width="1.6" stroke-linecap="round"></path>
-                      <path d="M4.5 8.7a8 8 0 0 1 11 0" stroke="#17141F" stroke-width="1.6" stroke-linecap="round"></path>
-                      <circle cx="10" cy="12" r="1.4" fill="#17141F"></circle>
-                    </svg>
-                    <svg viewBox="0 0 25 12" width="21" height="10" fill="none" aria-hidden="true">
-                      <rect x="0.75" y="0.75" width="20.5" height="10.5" rx="2.5" stroke="#17141F" stroke-width="1.2"></rect>
-                      <rect x="2.5" y="2.5" width="14" height="7" rx="1.2" fill="#17141F"></rect>
-                      <rect x="22.5" y="4" width="1.8" height="4" rx="0.9" fill="#17141F"></rect>
-                    </svg>
-                  </div>
+                  <span style="font-size:11px">●●● ▮</span>
                 </div>
                 <div class="chat-header">
                   <div class="chat-avatar">
-                    <svg viewBox="0 0 100 100" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Logo de Andi">
-                      <path d="M 50 25 L 29 74"></path>
-                      <path d="M 50 25 L 71 74"></path>
-                      <circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"></circle>
-                    </svg>
+                    <svg viewBox="0 0 100 100" width="18" height="18" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M 50 25 L 29 74"/><path d="M 50 25 L 71 74"/><circle cx="50" cy="55" r="6" fill="#E8F76B" stroke="none"/></svg>
                   </div>
-                  <div class="chat-header-text">
-                    <span class="chat-name">Andi · Conversa</span>
-                    <span class="chat-status">en línea</span>
-                  </div>
+                  <div class="chat-header-text"><span class="chat-name">Andi · Conversa</span><span class="chat-status">en línea</span></div>
                 </div>
                 <div class="chat-messages" id="messagesCamila"></div>
                 <div class="phone-home-indicator" aria-hidden="true"></div>
@@ -204,32 +218,48 @@
     </div>
   </section>
 
+  <section class="cierre">
+    <div class="wrap">
+      <div class="bloque">
+        <svg class="anillo" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"/>
+        </svg>
+        <h2>Conversa y punto<span class="p" aria-hidden="true"></span></h2>
+        <p>Escríbenos y te mostramos cómo funcionaría Andi en tu negocio, con tus turnos y tus reglas.</p>
+        <div class="acciones">
+          <a class="btn btn-lima" href="https://wa.me/573053060642?text=Hola%2C%20quiero%20conocer%20a%20Andi" target="_blank" rel="noopener">Escríbele a Andi</a>
+          <a class="btn btn-borde" href="/#agentes">Ver otros agentes</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer id="contacto" class="site-footer">
-  <div class="container footer-inner">
+<footer id="contacto" class="footer">
+  <div class="wrap">
     <div class="footer-top">
-      <div class="brand">
-        <svg class="logo" viewBox="0 0 100 100" width="22" height="22" fill="none" role="img" aria-label="Logo de Conversa">
-          <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"></circle>
-          <circle cx="78" cy="62" r="8" fill="#E8F76B"></circle>
+      <a class="marca" href="/" aria-label="Conversa, inicio">
+        <svg viewBox="0 0 100 100" width="24" height="24" fill="none" aria-hidden="true">
+          <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"/>
+          <circle cx="78" cy="62" r="8" fill="#E8F76B"/>
         </svg>
-        <span class="brand-name brand-name-sm">Conversa</span>
-      </div>
-      <nav class="footer-nav">
-        <a href="https://wa.me/573053060642?text=Hola%2C%20quiero%20conocer%20Conversa" data-wa-msg="Hola, quiero conocer Conversa">WhatsApp</a>
-        <a href="index.html#contacto">Contacto</a>
+        Conversa
+      </a>
+      <nav aria-label="Enlaces del sitio">
+        <a href="/login.html">Iniciar sesión</a>
+        <a href="https://wa.me/573053060642" target="_blank" rel="noopener">WhatsApp</a>
         <a href="privacidad.html">Privacidad</a>
         <a href="terminos.html">Términos</a>
         <a href="eliminar-datos.html">Eliminar mis datos</a>
       </nav>
     </div>
-    <div class="footer-divider"></div>
-    <span class="footer-copy">© 2026 Conversa. Conversa y punto.</span>
+    <div class="footer-bajo">
+      <span>© 2026 Conversa</span>
+      <span>conversa-col.com</span>
+    </div>
   </div>
 </footer>
 
-<script src="js/whatsapp.js"></script>
 <script src="js/andi-demo.js"></script>
 </body>
 </html>

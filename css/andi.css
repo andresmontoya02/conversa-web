@@ -1,0 +1,225 @@
+/* Página de Andi (andi.html). Se carga DESPUÉS de css/home.css, que ya trae
+   los tokens, el nav isla, los botones con sus hover, el cierre y el footer.
+   Aquí va solo lo propio de esta página: hero Pop Site, abanico de celulares,
+   tarjetas con borde fino y el demo (scrollytelling). */
+:root{
+  --wa-fondo:#EFEAE2; --wa-out:#D9FDD3;
+}
+html{scroll-padding-top:calc(var(--alto-nav) + 16px)}
+button{font:inherit;color:inherit}
+
+/* ---------- Scrollytelling ---------- */
+/* overflow-x:clip a propósito: el anillo del disco generaba scroll lateral en el celular */
+.scrolly{padding-block:32px 24px;overflow-x:clip}
+.scrolly-inner{display:flex;flex-direction:column-reverse;gap:8px}
+.scrolly-text{min-width:0;display:flex;flex-direction:column}
+.scrolly-step{display:flex;flex-direction:column;justify-content:center;gap:16px;padding-block:40px}
+.scrolly-step h2{font-weight:700;font-size:clamp(28px,6vw,40px);line-height:1.12;letter-spacing:.04em}
+.scrolly-step p{margin:0;font-size:17px;line-height:1.55;max-width:42ch}
+.scrolly-step .num{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+.scrolly-step .hl{font-weight:600;background:linear-gradient(transparent 58%, var(--lila) 58%, var(--lila) 92%, transparent 92%);padding-inline:.06em}
+.scrolly-step .hl-underline{background:linear-gradient(transparent 12%, var(--lima) 12%, var(--lima) 92%, transparent 92%);padding-inline:.08em;margin-inline:-.04em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+/* Columna fija con los celulares (fondo papel en móvil, transparente en desktop) */
+.scrolly-sticky{
+  position:sticky;top:calc(12px + var(--alto-nav) + 8px);z-index:5;
+  padding:16px 12px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.scrolly-sticky::before{content:"";position:absolute;left:calc(var(--gutter) * -1);right:calc(var(--gutter) * -1);top:calc(-12px - var(--alto-nav) - 8px);height:calc(12px + var(--alto-nav) + 8px);background:var(--papel);z-index:-1}
+.controles{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.segmentado{display:flex;gap:4px;background:rgba(255,255,255,.55);padding:4px;border-radius:var(--r-pill)}
+.phone-tab,.mode-toggle-btn{
+  appearance:none;-webkit-appearance:none;border:0;background:transparent;color:var(--tinta);
+  font-weight:500;font-size:12.5px;letter-spacing:.02em;min-height:36px;padding:6px 13px;border-radius:var(--r-pill);cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;touch-action:manipulation;
+  transition:background-color .18s ease,color .18s ease;
+}
+.phone-tab.active,.mode-toggle-btn.active{background:var(--tinta);color:var(--papel)}
+.mode-toggle-btn.active::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lima)}
+@media (hover:hover) and (pointer:fine){
+  .phone-tab:not(.active):hover,.mode-toggle-btn:not(.active):hover{background:var(--papel)}
+}
+.phone-tabs{display:flex}
+.mode-toggle{opacity:0;pointer-events:none;transition:opacity .2s ease}
+.mode-toggle.visible{opacity:1;pointer-events:auto}
+
+.phones-wrap{display:flex;gap:16px;align-items:flex-start;justify-content:center;width:100%}
+.phone-slot{display:none;flex-direction:column;align-items:center;flex:1;min-width:0;transition:opacity .35s ease,transform .35s ease,flex .35s ease,margin .35s ease}
+.phone-slot.tab-active{display:flex}
+.phone-label{display:none;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;opacity:0;transition:opacity .3s ease}
+.phone-label.visible{opacity:1}
+
+/* Celular del demo */
+.phone{position:relative;width:min(250px,68vw);border-radius:38px;background:var(--tinta);padding:9px;box-shadow:var(--sombra)}
+.phone-screen{height:36vh;min-height:260px;border-radius:30px;overflow:hidden;background:var(--wa-fondo);display:flex;flex-direction:column;letter-spacing:0}
+.phone-statusbar{display:flex;justify-content:space-between;align-items:center;padding:11px 18px 5px;background:var(--papel)}
+.phone-statusbar-time{font-size:12px;font-weight:600}
+.chat-header{display:flex;align-items:center;gap:10px;padding:6px 12px 10px;background:var(--papel);border-bottom:1px solid var(--borde)}
+.chat-avatar{width:32px;height:32px;border-radius:50%;background:var(--tinta);display:grid;place-items:center;flex:none}
+.chat-header-text{display:flex;flex-direction:column}
+.chat-name{font-size:13.5px;font-weight:600}
+.chat-status{font-size:11px;color:var(--gris);display:flex;align-items:center;gap:5px}
+.chat-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#25D366}
+.chat-messages{flex:1;min-height:0;overflow:hidden;padding:12px 10px;display:flex;flex-direction:column;gap:7px}
+.phone-home-indicator{width:110px;height:4px;border-radius:var(--r-pill);background:rgba(10,10,11,.25);margin:4px auto 8px;flex:none}
+
+.bubble{font-size:12px;line-height:1.4;padding:7px 10px;border-radius:11px;white-space:pre-line;box-shadow:0 1px 0 rgba(10,10,11,.06);max-width:86%}
+.bubble-in{align-self:flex-start;background:var(--papel);border-top-left-radius:3px}
+.bubble-out{align-self:flex-end;background:var(--wa-out);border-top-right-radius:3px}
+.bubble-typing{display:flex;gap:4px;align-items:center;padding:10px 12px}
+.bubble-typing .dot{width:5px;height:5px;border-radius:50%;background:var(--gris);opacity:.4;animation:dotPulse 1s infinite ease-in-out}
+.bubble-typing .dot:nth-child(2){animation-delay:.15s}.bubble-typing .dot:nth-child(3){animation-delay:.3s}
+@keyframes dotPulse{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.msg-enter{animation:msgIn .35s ease forwards}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg-pop{animation:msgPop .38s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes msgPop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+
+/* Botones de aprobación dentro del chat (estilo botón de WhatsApp) */
+.msg-buttons-block{display:flex;flex-direction:column;gap:6px;align-self:flex-start;width:86%}
+.msg-buttons{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.msg-pill{appearance:none;-webkit-appearance:none;border:0;background:var(--papel);color:#027EB5;font-size:12px;font-weight:600;padding:9px 6px;border-radius:9px;cursor:pointer;box-shadow:0 1px 0 rgba(10,10,11,.06);transition:background-color .2s,color .2s,opacity .2s}
+.msg-pill.tapped{background:var(--tinta);color:var(--papel)}
+.msg-pill.dimmed{opacity:.45}
+@media (hover:hover) and (pointer:fine){.msg-pill:hover:not(.tapped):not(.dimmed){background:var(--lila);color:var(--tinta)}}
+.decision-note{display:inline-flex;align-items:center;gap:5px;align-self:flex-start;background:var(--lima);color:var(--tinta);font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px;border-radius:var(--r-pill)}
+
+.config-card{background:var(--papel);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 0 rgba(10,10,11,.06)}
+.config-card-title{font-size:11px;font-weight:700}
+.config-card-options{display:flex;gap:4px;background:var(--lila-suave);padding:3px;border-radius:var(--r-pill)}
+.config-pill{appearance:none;-webkit-appearance:none;flex:1;min-width:0;white-space:nowrap;border:0;background:transparent;font-size:10px;font-weight:600;padding:7px 6px;border-radius:var(--r-pill);cursor:pointer;transition:background-color .2s,color .2s}
+.config-pill.active{background:var(--tinta);color:var(--papel)}
+@media (hover:hover) and (pointer:fine){.config-pill:not(.active):hover{background:var(--lila)}}
+
+.mini-schedule{display:flex;flex-direction:column;gap:3px;background:var(--papel);border-radius:12px;padding:9px;box-shadow:0 1px 0 rgba(10,10,11,.06)}
+.mini-schedule-row{display:flex;gap:3px}
+.mini-schedule-name{width:38px;flex:none;font-size:9px;font-weight:700;display:flex;align-items:center}
+.mini-schedule-cell{flex:1;height:22px;border-radius:5px;background:var(--lila-suave);display:flex;align-items:center;justify-content:center;font-size:7px;color:var(--gris)}
+.mini-schedule-head .mini-schedule-cell{background:transparent;font-weight:700}
+.mini-schedule-cell.off{background:transparent}
+.mini-schedule-cell.highlight-lila{background:var(--lila);color:var(--tinta);font-weight:700}
+.mini-schedule-cell.highlight-lima{background:var(--lima);color:var(--tinta);font-weight:700}
+.mini-schedule-cell.spotlight{box-shadow:0 0 0 2px var(--tinta)}
+
+/* Notificación de Mateo: aparece arriba de la pantalla, como una notificación real */
+.phone-banner[hidden]{display:none}
+.phone-banner{position:absolute;left:50%;top:44px;transform:translateX(-50%);width:calc(100% - 22px);background:rgba(255,255,255,.97);border-radius:16px;padding:10px 12px;box-shadow:0 10px 26px rgba(10,10,11,.22);display:flex;gap:9px;align-items:flex-start;z-index:3;letter-spacing:0}
+.phone-banner-icon{width:24px;height:24px;border-radius:7px;background:#25D366;display:grid;place-items:center;flex:none}
+.phone-banner-text{display:flex;flex-direction:column;gap:2px;min-width:0}
+.phone-banner-text strong{font-size:11.5px}
+.phone-banner-text span{font-size:10.5px;line-height:1.35;color:#3E3B45}
+.phone-banner.msg-enter{animation:bannerIn .35s ease forwards}
+@keyframes bannerIn{from{opacity:0;transform:translateX(-50%) translateY(-8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* ---------- Cierre (el bloque tinta viene de home.css) ---------- */
+.cierre{padding-block:56px 80px}
+.bloque .acciones{display:flex;flex-wrap:wrap;gap:12px;position:relative}
+/* El botón con borde va sobre tinta: blanco, y en hover/foco se rellena de blanco
+   (home.css lo rellenaría de tinta, pensado para fondo claro). */
+.bloque .btn-borde{color:var(--papel)}
+@media (hover:hover) and (pointer:fine){.bloque .btn-borde:hover{background:var(--papel);color:var(--tinta);border-color:var(--papel)}}
+.bloque .btn-borde:focus-visible{background:var(--papel);color:var(--tinta);border-color:var(--papel)}
+
+/* ---------- Desktop ---------- */
+@media (min-width:1024px){
+  .scrolly-inner{flex-direction:row;align-items:flex-start;gap:56px}
+  .scrolly-text{flex:1}
+  .scrolly-step{min-height:78vh;padding-block:0}
+  .scrolly-sticky{flex:0 0 600px;padding:20px 20px 24px}
+  .phone-tabs{display:none}
+  .phone-label{display:block}
+  .scrolly-sticky::before{display:none}
+  .phone-tab,.mode-toggle-btn{min-height:40px;font-size:13px;padding:8px 16px}
+  /* opacity:1 a propósito: el celular del jefe se veía transparente */
+  .phone-slot{display:flex;opacity:1;transform:scale(1)}
+  .phone-slot.is-focused{opacity:1;transform:scale(1.02)}
+  .phone{width:262px}
+  .phone-screen{height:min(540px, calc(100vh - 12px - var(--alto-nav) - 8px - 190px))}
+  /* Paso 0: solo se ve el celular de Camila; luego aparece el del jefe */
+  .phones-wrap.solo .phone-slot[data-phone="jefe"]{flex:0 0 0;opacity:0;transform:translateX(-16px);overflow:hidden;margin:0;pointer-events:none}
+  .phones-wrap.solo .phone-slot[data-phone="camila"]{margin:0 auto}
+}
+@media (prefers-reduced-motion:reduce){
+  .msg-enter,.msg-pop{animation:none;opacity:1;transform:none}
+  .phone-banner.msg-enter{animation:none;transform:translateX(-50%)}
+  .bubble-typing .dot{animation:none}
+}
+
+/* Disco lila detrás de los celulares del demo (como el hero de la landing) */
+.phones-wrap{position:relative;isolation:isolate}
+.phones-wrap::before{content:"";position:absolute;left:50%;top:52%;width:min(340px,96%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:var(--lila);z-index:-1}
+.phones-wrap::after{content:"";position:absolute;left:50%;top:52%;width:min(300px,84%);aspect-ratio:1;transform:translate(-50%,-50%) rotate(55deg);border-radius:50%;border:8px solid rgba(10,10,11,.07);border-right-color:transparent;z-index:-1}
+@media (max-width:1023px){.scrolly-sticky{background:var(--papel)}}
+@media (min-width:1024px){
+  .phones-wrap::before{width:560px}
+  .phones-wrap::after{width:500px;border-width:10px}
+}
+
+/* ================= Estilo Pop Site =================
+   Titulares monumentales con letras juntas, centrados; bordes finos en vez de sombras;
+   celulares como protagonistas. Paleta y fuentes de Conversa. */
+.pop-hero{padding-block:56px 40px;text-align:center;overflow:hidden}
+.pop-hero .wrap{display:flex;flex-direction:column;align-items:center;gap:22px}
+.pop-badge{display:inline-flex;align-items:center;gap:10px;text-align:left;border:1px solid var(--borde);border-radius:900px;padding:5px 16px 5px 5px;font-size:13px;letter-spacing:.01em}
+.pop-badge b{font-weight:700}
+.pop-badge .av{width:26px;height:26px;border-radius:50%;background:var(--tinta);display:grid;place-items:center}
+.pop-titulo{font-family:var(--f-display);font-weight:700;font-size:clamp(52px,12.5vw,118px);line-height:.92;letter-spacing:-.05em;max-width:11ch;text-wrap:balance}
+.pop-titulo .resalta{padding-inline:.06em;margin-inline:-.02em}
+.pop-sub{margin:0;font-size:clamp(17px,2.4vw,21px);line-height:1.4;letter-spacing:-.01em;color:#4A4753;max-width:40ch}
+.pop-acciones{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+
+/* Abanico de celulares */
+.pop-abanico{position:relative;width:100%;max-width:880px;height:450px;margin-top:28px}
+.pop-tel{position:absolute;left:50%;top:0;margin:0;width:236px;transform-origin:50% 100%}
+.pop-tel figcaption{margin-top:14px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
+.pt-marco{background:var(--tinta);border-radius:36px;padding:8px;box-shadow:0 20px 40px rgba(10,10,11,.12)}
+.pt-pantalla{height:340px;border-radius:29px;overflow:hidden;background:#EFEAE2;display:flex;flex-direction:column;text-align:left;letter-spacing:0}
+.pt-top{display:flex;align-items:center;gap:8px;background:var(--papel);padding:16px 12px 10px;border-bottom:1px solid var(--borde)}
+.pt-top b{font-size:13px}
+.pt-top small{font-size:10.5px;color:var(--gris);margin-left:auto}
+.pt-av{width:26px;height:26px;border-radius:50%;background:var(--tinta);display:grid;place-items:center;flex:none}
+.pt-msgs{flex:1;padding:12px 10px;display:flex;flex-direction:column;justify-content:flex-end;gap:7px}
+.pt-msgs p,.mini-chat p{margin:0;font-size:12px;line-height:1.4;padding:7px 10px;border-radius:11px;max-width:88%;box-shadow:0 1px 0 rgba(10,10,11,.06)}
+.pt-msgs .i,.mini-chat .i{background:var(--papel);align-self:flex-start;border-top-left-radius:3px}
+.pt-msgs .o,.mini-chat .o{background:var(--wa-out);align-self:flex-end;border-top-right-radius:3px}
+.pt-btns{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:88%}
+.pt-btns span{background:var(--papel);border-radius:9px;text-align:center;padding:8px 4px;font-size:11.5px;font-weight:600;color:#027EB5;box-shadow:0 1px 0 rgba(10,10,11,.06)}
+.pt-btns .si{background:var(--tinta);color:var(--papel)}
+.t-centro{z-index:2;transform:translateX(-50%)}
+.t-izq{z-index:1;transform:translateX(-50%) translateX(-200px) translateY(46px) rotate(-8deg)}
+.t-der{z-index:1;transform:translateX(-50%) translateX(200px) translateY(46px) rotate(8deg)}
+.t-izq figcaption,.t-der figcaption{opacity:.0}
+@media (max-width:719px){
+  .pop-abanico{height:380px;margin-top:16px}
+  .pop-tel{width:200px}
+  .pt-pantalla{height:320px}
+  .pop-tel figcaption{display:none}
+  .t-izq{transform:translateX(-50%) translateX(-120px) translateY(40px) rotate(-9deg) scale(.86)}
+  .t-der{transform:translateX(-50%) translateX(120px) translateY(40px) rotate(9deg) scale(.86)}
+}
+@media (min-width:1024px){.t-izq figcaption,.t-der figcaption{opacity:1}}
+
+/* Sección de tarjetas con borde fino */
+.pop-seccion{padding-block:72px 40px}
+.pop-cabeza{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:44px}
+.pop-cabeza h2,.paso-intro h2{font-family:var(--f-display);font-weight:700;font-size:clamp(40px,8vw,84px);line-height:.98;letter-spacing:-.045em;text-wrap:balance}
+.pop-cabeza p{margin:0;font-size:clamp(16px,2vw,19px);color:#4A4753;max-width:44ch}
+.pop-grid{display:grid;gap:16px}
+.pop-card{border:1px solid var(--tinta);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--papel)}
+.pc-prev{background:var(--lila-suave);border-radius:14px;height:170px;display:grid;place-items:center;padding:16px;margin-bottom:8px}
+.pop-card h3{font-size:21px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.pop-card p{margin:0;font-size:14.5px;line-height:1.5;color:#4A4753}
+.mini-chat{width:100%;max-width:240px;display:flex;flex-direction:column;gap:7px}
+.mini-chat .pt-btns{width:88%}
+.mini-cuadro{width:100%;max-width:250px;background:var(--papel);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:4px;box-shadow:0 1px 0 rgba(10,10,11,.06)}
+.mc-f{display:flex;gap:4px;align-items:center}
+.mc-f span{width:46px;flex:none;font-size:10px;font-weight:700}
+.mc-f i{flex:1;height:24px;border-radius:6px;background:transparent;font-style:normal;font-size:8px;font-weight:700;display:grid;place-items:center}
+.mc-f i.on{background:var(--lila-suave)}
+.mc-f i.lima{background:var(--lima)}
+.mc-h i{height:auto;font-size:9px;color:var(--gris)}
+@media (min-width:720px){.pop-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* Demo: intro grande y pasos con titular más compacto */
+.paso-intro{padding-top:40px}
+.scrolly-step h2{letter-spacing:-.02em}
