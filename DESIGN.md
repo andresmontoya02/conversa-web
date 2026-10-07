@@ -94,7 +94,17 @@ Ritmo de la página: nav isla tinta → hero papel → banda lila (agentes) → 
 - **Sin testimonios** — todavía no hay sección de logos de clientes ni citas.
 - Todo lo demás (paleta, tipografía, tono, componentes) sigue las secciones 1–6 de este documento.
 
-## 8. Resumen rápido para agentes de código
+## 8. Página de Andi (`andi.html`)
+
+Página del agente Andi, con el mismo nav isla, cierre "Conversa y punto." y footer de la landing (`css/home.css`); lo propio de la página vive en `css/andi.css` y el demo en `js/andi-demo.js`.
+
+- **Hero estilo Pop Site**: todo centrado. Badge de borde fino con el isotipo de Andi, **titular gigante** en Space Grotesk 700 con **letras juntas** (tracking negativo, interlineado apretado) — "Cambios de turno **sin el drama.**" con "sin el drama." **resaltado en lima** — subtítulo corto y dos botones píldora (tinta y con borde).
+- **Abanico de 3 celulares**: Camila pide el cambio, Carlos lo aprueba (al centro, al frente) y Mateo queda al día. Los laterales van girados y un poco más abajo; cada celular tiene su propio marco y fondo de chat. En móvil el abanico se compacta y sin rótulos.
+- **"Todo pasa en WhatsApp."**: titular gigante centrado y **3 tarjetas con borde fino negro (1px tinta), sin sombra**, cada una con una vista previa sobre lila suave (mini-cuadrante, mini-chat, solicitud con Aprobar/Rechazar).
+- **Demo (scrollytelling)**: los pasos de texto avanzan al hacer scroll y los celulares del jefe y de Camila quedan fijos **sobre un disco lila** con el anillo del isotipo (como el hero de la landing). Selector Automático / Con aprobación, botones Aprobar / Rechazar dentro del chat, mini-cuadrante que se actualiza y notificación de Mateo arriba de la pantalla. En móvil, pestañas Jefe / Camila.
+- Sin animaciones con `prefers-reduced-motion`; el demo muestra los mensajes al instante.
+
+## 9. Resumen rápido para agentes de código
 
 1. Mobile-first siempre — verificar en viewport chico antes que en desktop.
 2. Paleta cerrada: Lila `#CFC6FB`, Lima `#E8F76B`, Tinta `#0A0A0B`, Papel `#FFFFFF`, Gris `#6E6B78`. No inventar colores nuevos.
