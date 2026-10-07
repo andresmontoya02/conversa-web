@@ -13,6 +13,7 @@
     // Se vacía y se vuelve a escribir para que el lector de pantalla lo repita.
     requestAnimationFrame(function () {
       aviso.textContent = "El panel estará disponible muy pronto.";
+      programar();
     });
   }
   form.addEventListener("submit", avisar);
@@ -27,14 +28,17 @@
   });
 
   // El botón flotante de WhatsApp se aparta mientras el botón "Entrar"
-  // pasa por debajo de él, para no taparlo.
+  // (o el aviso de debajo) pasa por detrás de él, para no taparlo.
   var pendiente = false;
   function revisar() {
     pendiente = false;
-    var b = entrar.getBoundingClientRect();
     var w = wa.getBoundingClientRect();
     var m = 24;
-    var choca = b.bottom > w.top - m && b.top < w.bottom + m && b.right > w.left - m && b.left < w.right + m;
+    var choca = [entrar, aviso].some(function (el) {
+      if (!el.textContent.trim() && el === aviso) return false;
+      var b = el.getBoundingClientRect();
+      return b.bottom > w.top - m && b.top < w.bottom + m && b.right > w.left - m && b.left < w.right + m;
+    });
     wa.classList.toggle("apartado", choca);
   }
   function programar() {
