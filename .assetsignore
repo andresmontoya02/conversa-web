@@ -1,3 +1,8 @@
 .git
 .wrangler
 wrangler.jsonc
+.agents
+.claude
+.ecc
+DESIGN.md
+skills-lock.json
