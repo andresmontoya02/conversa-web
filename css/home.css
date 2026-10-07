@@ -284,19 +284,15 @@ html{scroll-padding-top:var(--alto-nav)}
   transition:text-decoration-color .18s ease;
 }
 
-/* Franja de garantías: cada ítem lleva siempre el mismo padding (fondo
-   transparente) para que el hover no mueva nada. El gap y los márgenes
-   compensan ese padding y la línea superior se dibuja aparte, así
-   en reposo se ve alineada igual que antes. */
-.franja{
-  position:relative;gap:0 4px;margin-inline:-12px;padding-top:19px;margin-bottom:-6px;border-top:0;
-}
-.franja::before{content:"";position:absolute;top:0;left:12px;right:12px;border-top:1px solid var(--borde)}
+/* Franja de garantías: "foco" al pasar el mouse. En reposo se ve igual que
+   siempre; el ítem señalado crece desde su borde izquierdo y los demás se
+   atenúan. */
+:root{--suave:cubic-bezier(.22,.61,.36,1)}
 .franja span{
-  padding:6px 12px;border-radius:var(--r-pill);background:transparent;
-  transition:background-color .18s ease, color .18s ease;
+  transform-origin:left center;
+  transition:transform .4s var(--suave), color .4s var(--suave), opacity .4s var(--suave);
 }
-.franja span::before{transition:opacity .18s ease}
+.franja span::before{transition:opacity .4s var(--suave)}
 
 @media (hover:hover) and (pointer:fine){
   .btn-tinta:hover{background:var(--lila);color:var(--tinta)}
@@ -306,7 +302,10 @@ html{scroll-padding-top:var(--alto-nav)}
   .nav .btn-borde:hover{background:var(--papel);color:var(--tinta);border-color:var(--papel)}
   .nav-links a:hover,.footer nav a:hover{color:var(--lima);opacity:1}
   .agente:hover .enlace-texto{text-decoration-color:var(--lila)}
-  .franja span:hover{background:var(--lila);color:var(--tinta)}
+  /* El ítem crecido (115%) no debe tocar al siguiente: 32px en vez de 28px */
+  .franja{column-gap:32px}
+  .franja:hover span{opacity:.45}
+  .franja span:hover{opacity:1;transform:scale(1.15);color:var(--tinta)}
   .franja span:hover::before{opacity:1}
 }
 .btn-tinta:focus-visible{background:var(--lila);color:var(--tinta)}
@@ -316,3 +315,9 @@ html{scroll-padding-top:var(--alto-nav)}
 .nav .btn-borde:focus-visible{background:var(--papel);color:var(--tinta);border-color:var(--papel)}
 .nav-links a:focus-visible,.footer nav a:focus-visible{color:var(--lima);opacity:1}
 .agente:focus-visible .enlace-texto{text-decoration-color:var(--lila)}
+
+/* Con movimiento reducido: el ítem de la franja cambia color y opacidad,
+   pero no crece. */
+@media (prefers-reduced-motion:reduce){
+  .franja span:hover{transform:none}
+}
