@@ -216,3 +216,56 @@ h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* =====================================================================
+   Versión final (rediseno-going): mejoras de accesibilidad / táctiles,
+   nav tipo isla flotante y entrada suave al hacer scroll.
+   ===================================================================== */
+
+/* Nav tipo isla flotante (tinta, píldora, separado del borde superior) */
+.nav{
+  background:transparent;margin-top:12px;
+  top:calc(env(safe-area-inset-top,0px) + 12px);
+  padding-inline:var(--gutter);
+}
+.nav .nav-inner{
+  max-width:calc(var(--max) - 2 * var(--gutter));
+  background:var(--tinta);border-radius:var(--r-pill);
+  padding:10px 10px 10px 20px;
+  box-shadow:0 10px 30px rgba(10,10,11,.14);
+}
+
+/* Las anclas no quedan debajo del nav: borde inferior de la isla
+   (12px de separación + alto de la isla) en cada breakpoint */
+:root{--alto-nav:74px}
+html{scroll-padding-top:var(--alto-nav)}
+
+/* Botones pequeños con objetivo táctil de 44px en móvil */
+@media (max-width:719.98px){
+  :root{--alto-nav:76px}
+  .btn-sm{min-height:44px}
+}
+
+/* Enlaces del footer: más área táctil sin cambiar cómo se ven
+   (el padding extra se compensa con margen negativo) */
+.footer nav a{display:inline-block;padding-block:12px;margin-block:-12px}
+
+/* "Saltar al contenido": solo visible al recibir foco */
+.saltar{
+  position:absolute;left:16px;top:-200px;z-index:40;
+  background:var(--lima);color:var(--tinta);font-weight:600;font-size:15px;
+  padding:12px 20px;border-radius:var(--r-pill);
+}
+.saltar:focus,.saltar:focus-visible{top:calc(env(safe-area-inset-top,0px) + 12px)}
+
+/* Sin zoom por doble toque en los botones */
+.btn{touch-action:manipulation}
+
+/* Entrada suave al hacer scroll (js/home.js). Solo se ocultan elementos si
+   el JS corrió (añade .revelar-on al <html>); sin JS todo se ve normal. */
+.revelar-on .revelar{
+  opacity:0;transform:translateY(16px);
+  transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+  transition-delay:calc(var(--i, 0) * 80ms);
+}
+.revelar-on .revelar.visible{opacity:1;transform:none}

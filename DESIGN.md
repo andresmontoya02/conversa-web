@@ -77,19 +77,21 @@ Jerarquía:
 
 ## 7. Referencia estructural — sitio web (conversa-web / landing)
 
-Este repo es la landing pública de Conversa. Referencia estructural: estilo **"Going"** en **tema claro** (bandas de color alternadas, botones píldora, titulares con tracking editorial), con la identidad Conversa de las secciones 1–6. Reemplaza a la referencia anterior (Fintria, tema oscuro). La implementación vive en `index.html` + `css/home.css`.
+Este repo es la landing pública de Conversa. Referencia estructural: estilo **"Going"** en **tema claro** (bandas de color alternadas, botones píldora, titulares con tracking editorial), con la identidad Conversa de las secciones 1–6. La landing vive en `index.html` + `css/home.css` + `js/home.js`; el login en `login.html` + `css/login.css` + `js/login.js`.
 
-Ritmo de la página: nav tinta → hero papel → banda lila (agentes) → papel (principios) → bloque tinta (cierre) → footer tinta.
+Ritmo de la página: nav isla tinta → hero papel → banda lila (agentes) → papel (principios) → bloque tinta (cierre) → footer tinta.
 
-- **Nav y footer en Tinta**: fondo `#0A0A0B`, texto Papel, isotipo Conversa con punto lima.
+- **Nav tipo isla flotante**: píldora en Tinta (`#0A0A0B`) separada 12px del borde superior y de los lados, sticky, con sombra suave; isotipo Conversa con punto lima, enlaces y CTA lima. Las anclas usan `scroll-padding-top` igual al borde inferior de la isla.
 - **Hero blanco (Papel)**: titular grande en Space Grotesk con **tracking amplio**, con **"sin el drama." resaltado en lima** (marcador detrás del texto). A la derecha, **mockup de chat de WhatsApp** con Andi en acción sobre un disco lila — no un screenshot de dashboard, no una ilustración abstracta genérica.
 - **Banda lila de agentes**: sección con fondo Lila y **3 tarjetas** (Andi — disponible, Mesa — próximamente, "Tu próximo agente" en Tinta).
 - **Principios ("Por qué WhatsApp")**: tarjetas en **lila suave**; en móvil **se deslizan** en horizontal (carrusel con scroll-snap), en tablet/desktop pasan a grilla.
 - **Cierre "Conversa y punto."** en un **bloque Tinta** redondeado, con CTA lima.
+- **Footer en Tinta**, simple — links esenciales, sin mega-footer de 5 columnas.
 - **Botones píldora** (radio completo) en toda la página.
+- **Movimiento**: entrada suave (fade-up de 16px, solo `transform`/`opacity`) al aparecer cada bloque en pantalla, con IntersectionObserver. Respeta `prefers-reduced-motion` y el contenido se ve completo aunque el JS no corra.
+- **Login (`login.html`)**: pantalla dividida **tinta / blanco**. En desktop, columna tinta (~42%) con logo, titular "Tu operación." (blanco) / "Sin el drama." (lila), bajada y firma "Conversa y punto." con punto lima; columna blanca con el formulario (inputs de radio 16px con anillo lila al foco, botón píldora tinta "Entrar") y botón flotante lima de WhatsApp para soporte. En móvil, bloque tinta corto arriba y el formulario debajo. Un solo login para todos, sin selector de rol; `noindex`.
 - **Sin pasos numerados** ("1. Conectá tu WhatsApp, 2. Configurá..., 3. Listo") — evitar el patrón de landing SaaS genérica de 3 pasos.
 - **Sin testimonios** — todavía no hay sección de logos de clientes ni citas.
-- **Footer simple** — links esenciales, sin mega-footer de 5 columnas.
 - Todo lo demás (paleta, tipografía, tono, componentes) sigue las secciones 1–6 de este documento.
 
 ## 8. Resumen rápido para agentes de código
@@ -100,4 +102,4 @@ Ritmo de la página: nav tinta → hero papel → banda lila (agentes) → papel
 4. Tono: directo, sin jerga corporativa, estilo Revolut.
 5. Tagline: "Tu operación, sin el drama." Firma secundaria: "Conversa y punto."
 6. El punto lima es la firma visual de "agente activo" — protegerlo, no reutilizarlo como decoración genérica.
-7. (Este repo) Referencia estructural = estilo Going en tema claro: nav y footer tinta, hero blanco con "sin el drama." en lima + mockup de WhatsApp, banda lila de agentes, cierre tinta, botones píldora; sin pasos numerados, sin testimonios, footer simple.
+7. (Este repo) Referencia estructural = estilo Going en tema claro: nav isla flotante en tinta, hero blanco con "sin el drama." en lima + mockup de WhatsApp, banda lila de agentes, cierre tinta, botones píldora, fade-up suave al hacer scroll, login de pantalla dividida tinta/blanco; sin pasos numerados, sin testimonios, footer simple.

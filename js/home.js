@@ -1,5 +1,6 @@
-// 11. Fade-up al entrar en pantalla. Respeta prefers-reduced-motion
-// y no oculta nada si el navegador no tiene IntersectionObserver.
+// Entrada suave (fade-up) de los bloques al aparecer en pantalla.
+// Respeta prefers-reduced-motion y no oculta nada si el navegador
+// no tiene IntersectionObserver.
 (function () {
   if (!("IntersectionObserver" in window)) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -22,15 +23,4 @@
       observador.observe(el);
     });
   });
-
-  // El panel de cambios usa esto para repetir la animación de un bloque.
-  window.reanimarEntrada = function (raiz) {
-    var els = [raiz].concat([].slice.call(raiz.querySelectorAll(".revelar")))
-      .filter(function (el) { return el.classList.contains("revelar"); });
-    els.forEach(function (el) { el.classList.remove("visible"); });
-    void raiz.offsetWidth;
-    setTimeout(function () {
-      els.forEach(function (el) { el.classList.add("visible"); });
-    }, 350);
-  };
 })();

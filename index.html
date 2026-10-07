@@ -11,8 +11,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/home.css">
+<script src="js/home.js" defer></script>
 </head>
 <body>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 
 <header class="nav">
   <div class="wrap nav-inner">
@@ -29,13 +32,13 @@
       <a href="#contacto">Contacto</a>
     </nav>
     <div class="nav-acciones">
-      <a class="btn btn-borde btn-sm" href="#">Iniciar sesión</a>
+      <a class="btn btn-borde btn-sm" href="/login.html">Iniciar sesión</a>
       <a class="btn btn-lima btn-sm" href="https://wa.me/573053060642?text=Hola%2C%20quiero%20conocer%20a%20Andi" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
 </header>
 
-<main>
+<main id="contenido">
   <section class="hero">
     <div class="wrap">
       <div class="hero-grid">
@@ -49,7 +52,7 @@
           </div>
         </div>
 
-        <div class="escena" aria-label="Ejemplo de conversación con Andi en WhatsApp">
+        <div class="escena" role="img" aria-label="Ejemplo de conversación con Andi en WhatsApp">
           <div class="disco" aria-hidden="true">
             <svg viewBox="0 0 100 100" fill="none">
               <circle cx="50" cy="50" r="41" stroke="#0A0A0B" stroke-opacity=".08" stroke-width="6" stroke-linecap="round" stroke-dasharray="193 65" transform="rotate(55 50 50)"/>
@@ -170,7 +173,7 @@
         <span class="kicker">Por qué WhatsApp</span>
         <h2 class="titulo">Donde tu equipo ya está</h2>
       </div>
-      <div class="carrusel">
+      <div class="carrusel" tabindex="0" role="region" aria-label="Principios de Conversa">
         <article class="principio">
           <div class="marca-p"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0A0A0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 1 3.3 6.5L4 20l1.4-3.4A8 8 0 0 1 4 12z"/></svg></div>
           <h3>Cero fricción</h3>
