@@ -1,0 +1,76 @@
+/* Versión B: todo lo de la A + recomendaciones 9–12 (minimalist-ui / high-end-visual-design).
+   Solo cambian formas, fuentes y movimiento; la paleta es la de Conversa. */
+
+/* 10. Fuentes: Geist para texto/UI, Newsreader (serif) para titulares.
+       El wordmark "Conversa" sigue en Space Grotesk. */
+:root{
+  --f-texto:'Geist', ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-display:'Newsreader', ui-serif, Georgia, "Times New Roman", serif;
+  --f-marca:'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --r-btn:6px;
+  --curva:cubic-bezier(.32,.72,0,1);
+  --curva-entrada:cubic-bezier(.16,1,.3,1);
+}
+.marca{font-family:var(--f-marca)}
+.hero h1{font-weight:500;line-height:1.05;letter-spacing:-.035em}
+.titulo{font-weight:500;line-height:1.1;letter-spacing:-.03em}
+.agente h3{font-weight:600;letter-spacing:-.02em}
+.principio h3{font-weight:600;letter-spacing:-.02em}
+.bloque h2{font-weight:500;line-height:1.05;letter-spacing:-.035em}
+
+/* 10. Botones con radio de 6px en vez de píldora */
+.btn{border-radius:var(--r-btn)}
+
+/* 10. Sin banda de color grande: la sección de agentes sobre papel */
+.banda{background:var(--papel)}
+
+/* 9. Ícono SVG en lugar del emoji */
+.tarjeta-chat .ok{display:inline-block;vertical-align:-1px;margin-left:2px}
+
+/* 12. Nav tipo isla flotante */
+.nav{
+  background:transparent;margin-top:12px;
+  top:calc(env(safe-area-inset-top,0px) + 12px);
+  padding-inline:var(--gutter);
+}
+.nav .nav-inner{
+  max-width:calc(var(--max) - 2 * var(--gutter));
+  background:var(--tinta);border-radius:var(--r-pill);
+  padding:10px 10px 10px 20px;
+  box-shadow:0 10px 30px rgba(10,10,11,.14);
+}
+:root{--alto-nav:74px}
+@media (max-width:719.98px){:root{--alto-nav:76px}}
+
+/* 12. Tarjetas de doble borde: carcasa exterior concéntrica (sombras de expansión) */
+.agente{
+  box-shadow:0 0 0 6px rgba(10,10,11,.035), 0 0 0 7px rgba(10,10,11,.08), var(--sombra);
+}
+.agente.tuyo{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 6px rgba(10,10,11,.035), 0 0 0 7px rgba(10,10,11,.08);
+}
+.principio{box-shadow:0 0 0 6px rgba(10,10,11,.025), 0 0 0 7px rgba(10,10,11,.07)}
+.agentes{gap:32px}
+.carrusel{gap:28px;padding-block:10px 14px}
+
+/* 12. Flecha dentro de un círculo */
+.agente .enlace .flecha{
+  display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;
+  background:var(--lila-suave);
+  transition:transform .5s var(--curva);
+}
+.agente:hover .enlace .flecha{transform:translate(2px,-1px) scale(1.05)}
+
+/* 12. Curvas cubic-bezier en lugar de ease */
+.btn{transition:transform .5s var(--curva), background-color .5s var(--curva)}
+.btn:active{transform:scale(.98)}
+.nav-links a,.footer nav a{transition:opacity .4s var(--curva)}
+
+/* 11. Entrada al hacer scroll. Solo se ocultan elementos si el JS corrió
+   (añade .revelar-on al <html>); sin JS todo se ve normal. */
+.revelar-on .revelar{
+  opacity:0;transform:translateY(16px);
+  transition:opacity .8s var(--curva-entrada), transform .8s var(--curva-entrada);
+  transition-delay:calc(var(--i, 0) * 80ms);
+}
+.revelar-on .revelar.visible{opacity:1;transform:none}

@@ -1,0 +1,60 @@
+/* Panel flotante "qué cambió" para las versiones de comparación. No se carga en index.html. */
+.cambios-panel{
+  position:fixed;right:16px;bottom:16px;z-index:30;width:380px;max-height:min(72vh,600px);
+  overflow-y:auto;overscroll-behavior:contain;
+  background:var(--papel);color:var(--tinta);border:1px solid var(--borde);border-radius:20px;
+  box-shadow:0 14px 44px rgba(10,10,11,.18);
+  font-family:var(--f-texto);font-size:14px;line-height:1.4;letter-spacing:0;
+}
+.cambios-panel[hidden],.cambios-abrir[hidden],.cambios-bolitas[hidden]{display:none}
+.cambios-cabeza{
+  position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 10px 12px 18px;background:var(--papel);border-bottom:1px solid var(--borde);
+}
+.cambios-cabeza h2{font-family:var(--f-texto);font-size:15px;font-weight:700;letter-spacing:0}
+.cambios-cerrar{
+  flex:none;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--tinta);
+  font:inherit;font-size:24px;line-height:1;cursor:pointer;
+}
+.cambios-cerrar:hover{background:var(--lila-suave)}
+.cambios-lista{list-style:none;margin:0;padding:6px 10px 10px 18px}
+.cambios-lista li{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(10,10,11,.06)}
+.cambios-lista li:last-child{border-bottom:0}
+.cambios-num{
+  flex:none;width:22px;height:22px;border-radius:50%;background:var(--tinta);color:var(--papel);
+  display:grid;place-items:center;font-size:11px;font-weight:700;
+}
+.cambios-texto{flex:1;min-width:0}
+.cambios-nota{display:block;color:var(--gris);font-size:12px}
+.cambios-ver{
+  flex:none;min-height:36px;padding:6px 14px;border:1.5px solid var(--tinta);border-radius:var(--r-pill);
+  background:transparent;color:var(--tinta);font:inherit;font-weight:600;font-size:13px;cursor:pointer;
+  touch-action:manipulation;
+}
+.cambios-ver:hover{background:var(--lima)}
+.cambios-invisible{flex:none;padding:0 6px;color:var(--gris);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.cambios-abrir{
+  position:fixed;right:16px;bottom:16px;z-index:30;display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:10px 18px;border:0;border-radius:var(--r-pill);
+  background:var(--tinta);color:var(--papel);font-family:var(--f-texto);font-weight:600;font-size:14px;
+  box-shadow:0 8px 24px rgba(10,10,11,.18);cursor:pointer;
+}
+.cambios-abrir::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lima)}
+
+/* Bolitas numeradas sobre cada elemento cambiado (capa aparte: no mueven el layout) */
+.cambios-bolitas{position:absolute;top:0;left:0;width:0;height:0;z-index:25;pointer-events:none}
+.cambios-bolita{
+  position:absolute;width:22px;height:22px;border-radius:50%;
+  background:var(--tinta);color:var(--papel);border:2px solid var(--papel);
+  display:grid;place-items:center;font-family:var(--f-texto);font-size:11px;font-weight:700;letter-spacing:0;
+  box-shadow:0 2px 6px rgba(10,10,11,.25);
+}
+.cambios-bolita.fija{position:fixed}
+
+/* Resaltado al pulsar "Ver" */
+.cambios-resaltado{outline:5px solid var(--lima)!important;outline-offset:4px!important}
+
+@media (max-width:719.98px){
+  .cambios-panel{left:0;right:0;bottom:0;width:auto;max-height:50vh;border-radius:20px 20px 0 0;border-bottom:0}
+  .cambios-ver{min-height:44px}
+}

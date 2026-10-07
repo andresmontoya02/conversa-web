@@ -1,0 +1,22 @@
+/* Página de inicio de sesión. Usa los tokens de css/home.css. */
+.login{padding-block:var(--seccion)}
+.login-tarjeta{
+  max-width:440px;margin-inline:auto;background:var(--papel);
+  border:1px solid var(--borde);border-radius:var(--r-card);box-shadow:var(--sombra);
+  padding:32px;display:flex;flex-direction:column;gap:8px;
+}
+.login-tarjeta h1{font-size:32px;font-weight:700;letter-spacing:.04em;line-height:1.1}
+.login-sub{margin:0 0 16px;color:var(--gris);font-size:16px}
+.login-form{display:flex;flex-direction:column;gap:20px}
+.campo{display:flex;flex-direction:column;gap:8px}
+.campo label{font-size:14px;font-weight:600}
+.campo input{
+  min-height:48px;padding:12px 16px;border:1.5px solid var(--borde);border-radius:14px;
+  font:inherit;font-size:16px;letter-spacing:normal;color:var(--tinta);background:var(--papel);
+}
+.campo input:focus-visible{outline:2px solid var(--tinta);outline-offset:2px;border-color:var(--tinta)}
+.login-form .btn{width:100%;margin-top:4px}
+.login-aviso{margin:0;min-height:1.45em;font-size:14px;color:var(--gris);text-align:center}
+@media (min-width:720px){
+  .login-tarjeta{padding:40px}
+}

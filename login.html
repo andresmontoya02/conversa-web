@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Iniciar sesión — Conversa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="marca" href="/" aria-label="Conversa, inicio">
+      <svg viewBox="0 0 100 100" width="30" height="30" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"/>
+        <circle cx="78" cy="62" r="8" fill="#E8F76B"/>
+      </svg>
+      Conversa
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="/#agentes">Agentes</a>
+      <a href="/#por-que">Por qué WhatsApp</a>
+      <a href="/#contacto">Contacto</a>
+    </nav>
+    <div class="nav-acciones">
+      <a class="btn btn-borde btn-sm" href="/login.html" aria-current="page">Iniciar sesión</a>
+      <a class="btn btn-lima btn-sm" href="https://wa.me/573053060642?text=Hola%2C%20quiero%20conocer%20a%20Andi" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<main class="login">
+  <div class="wrap">
+    <section class="login-tarjeta" aria-labelledby="login-titulo">
+      <h1 id="login-titulo">Iniciar sesión</h1>
+      <p class="login-sub">Entra al panel de tu negocio</p>
+      <form id="login-form" class="login-form">
+        <div class="campo">
+          <label for="usuario">Usuario</label>
+          <input id="usuario" name="usuario" type="text" autocomplete="username" autocapitalize="none" spellcheck="false">
+        </div>
+        <div class="campo">
+          <label for="contrasena">Contraseña</label>
+          <input id="contrasena" name="contrasena" type="password" autocomplete="current-password">
+        </div>
+        <button class="btn btn-tinta" type="submit">Entrar</button>
+        <p class="login-aviso" id="login-aviso" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+</main>
+
+<footer id="contacto" class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <a class="marca" href="/" aria-label="Conversa, inicio">
+        <svg viewBox="0 0 100 100" width="24" height="24" fill="none" aria-hidden="true">
+          <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"/>
+          <circle cx="78" cy="62" r="8" fill="#E8F76B"/>
+        </svg>
+        Conversa
+      </a>
+      <nav aria-label="Enlaces del sitio">
+        <a href="https://wa.me/573053060642" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="terminos.html">Términos</a>
+        <a href="eliminar-datos.html">Eliminar mis datos</a>
+      </nav>
+    </div>
+    <div class="footer-bajo">
+      <span>© 2026 Conversa</span>
+      <span>conversa-col.com</span>
+    </div>
+  </div>
+</footer>
+<script src="js/login.js"></script>
+</body>
+</html>

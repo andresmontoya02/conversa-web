@@ -1,0 +1,26 @@
+/* Versión A: mejoras de accesibilidad / táctiles sobre css/home.css (que no se modifica). */
+
+/* 4. Las anclas no quedan debajo del nav sticky: alto del nav en cada breakpoint */
+:root{--alto-nav:74px}
+html{scroll-padding-top:var(--alto-nav)}
+
+/* 1. Botones pequeños con objetivo táctil de 44px en móvil */
+@media (max-width:719.98px){
+  :root{--alto-nav:76px}
+  .btn-sm{min-height:44px}
+}
+
+/* 2. Enlaces del footer: más área táctil sin cambiar cómo se ven
+   (el padding extra se compensa con margen negativo) */
+.footer nav a{display:inline-block;padding-block:12px;margin-block:-12px}
+
+/* 5. "Saltar al contenido": solo visible al recibir foco */
+.saltar{
+  position:absolute;left:16px;top:-200px;z-index:40;
+  background:var(--lima);color:var(--tinta);font-weight:600;font-size:15px;
+  padding:12px 20px;border-radius:var(--r-pill);
+}
+.saltar:focus,.saltar:focus-visible{top:calc(env(safe-area-inset-top,0px) + 12px)}
+
+/* 8. Sin zoom por doble toque en los botones */
+.btn{touch-action:manipulation}
