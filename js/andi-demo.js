@@ -25,10 +25,10 @@
       "Le envié tu propuesta a Mateo: cederías tu turno del " + EJ.turnoCamila +
       " a cambio de tomar el de Mateo, " + EJ.turnoMateo + ". Te aviso en cuanto responda.",
     camilaPending:
-      "La otra persona aceptó. Este cambio necesita aprobación de tu manager, te aviso apenas la tengamos.",
+      "La otra persona aceptó. Este cambio necesita aprobación de tu jefe, te aviso apenas la tengamos.",
     camilaApproved:
       "Tu cambio con Mateo quedó aprobado. Mateo se hará cargo de tu turno del " + EJ.turnoCamila + ". ✅",
-    camilaRejected: "Tu manager rechazó el cambio de turno.",
+    camilaRejected: "Tu jefe rechazó el cambio de turno.",
     jefeEscalation:
       "Solicitud #" + EJ.solicitudId + " necesita tu aprobación:\n" +
       "Camila cede " + EJ.turnoCamila + " → lo tomaría Mateo.\n" +
@@ -37,7 +37,7 @@
       "Aviso: Camila y Mateo cambiaron su turno del jueves automáticamente. No necesitas hacer nada.",
     mateoApproved:
       "Tu cambio con Camila quedó aprobado. Ahora tienes " + EJ.turnoCamila + ", que te cedió Camila.",
-    mateoRejected: "Tu manager rechazó el cambio de turno.",
+    mateoRejected: "Tu jefe rechazó el cambio de turno.",
   };
 
   var SCROLLY_COPY = {
@@ -205,6 +205,7 @@
       var pill = document.createElement("button");
       pill.type = "button";
       pill.className = "config-pill" + (state.mode === mode ? " active" : "");
+      pill.setAttribute("aria-pressed", String(state.mode === mode));
       pill.dataset.mode = mode;
       pill.textContent = label;
       pill.setAttribute("aria-label", "Cambiar a modo " + label);
@@ -386,6 +387,7 @@
     var buttons = els.modeToggle.querySelectorAll(".mode-toggle-btn");
     buttons.forEach(function (btn) {
       btn.classList.toggle("active", btn.dataset.mode === state.mode);
+      btn.setAttribute("aria-pressed", String(btn.dataset.mode === state.mode));
     });
   }
 
@@ -431,6 +433,7 @@
     var tabs = els.phoneTabs.querySelectorAll(".phone-tab");
     tabs.forEach(function (t) {
       t.classList.toggle("active", t.dataset.target === phone);
+      t.setAttribute("aria-pressed", String(t.dataset.target === phone));
     });
     var slots = els.phonesWrap.querySelectorAll(".phone-slot");
     slots.forEach(function (s) {
