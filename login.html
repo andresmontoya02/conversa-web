@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Iniciar sesión — Conversa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/login.css">
+<script src="js/login.js" defer></script>
+</head>
+<body class="login-pagina">
+
+<div class="login-split">
+  <aside class="login-marca">
+    <div class="marca">
+      <svg viewBox="0 0 100 100" width="30" height="30" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"/>
+        <circle cx="78" cy="62" r="8" fill="#E8F76B"/>
+      </svg>
+      Conversa
+    </div>
+    <div class="login-mensaje">
+      <p class="login-titular"><span>Tu operación.</span><span class="lila">Sin el drama.</span></p>
+      <p class="login-bajada">Turnos, cambios y aprobaciones de tu equipo, en un solo lugar.</p>
+    </div>
+    <p class="login-firma">Conversa y punto<span class="p" aria-hidden="true"></span><span class="sr">.</span></p>
+  </aside>
+
+  <main class="login-principal">
+    <a class="login-volver" href="/">← Ir a Conversa</a>
+    <div class="login-caja">
+      <h1>Qué bueno tenerte de vuelta</h1>
+      <p class="login-sub">Entra al panel de tu negocio.</p>
+
+      <form id="login-form" class="login-form">
+        <div class="campo">
+          <label for="usuario">Usuario</label>
+          <input id="usuario" name="usuario" type="text" autocomplete="username" placeholder="tu usuario" autocapitalize="none" spellcheck="false">
+        </div>
+        <div class="campo">
+          <label for="contrasena">Contraseña</label>
+          <div class="campo-clave">
+            <input id="contrasena" name="contrasena" type="password" autocomplete="current-password">
+            <button class="ojo" type="button" aria-label="Mostrar contraseña" aria-controls="contrasena">
+              <svg class="ojo-abierto" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="ojo-cerrado" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="M3 3l18 18"/><path d="M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.1M6.6 6.6C3.8 8.4 2 12 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+            </button>
+          </div>
+        </div>
+        <a class="login-olvido" id="login-olvido" href="#">¿Olvidaste tu contraseña?</a>
+        <button class="btn btn-tinta login-entrar" type="submit">Entrar</button>
+        <p class="login-aviso" id="login-aviso" aria-live="polite"></p>
+      </form>
+
+      <nav class="login-enlaces" aria-label="Ayuda y legales">
+        <a href="https://wa.me/573053060642?text=Hola%2C%20necesito%20ayuda%20para%20entrar%20al%20panel" target="_blank" rel="noopener">Ayuda</a>
+        <a href="terminos.html">Términos</a>
+        <a href="privacidad.html">Privacidad</a>
+      </nav>
+    </div>
+
+    <a class="login-wa" href="https://wa.me/573053060642?text=Hola%2C%20necesito%20ayuda%20para%20entrar%20al%20panel" target="_blank" rel="noopener" aria-label="Escribir a soporte por WhatsApp">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#0A0A0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3.6 20.4l1.2-3.9A8.6 8.6 0 1 1 8 19.6z"/>
+        <path d="M9 8.3c.2-.4.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .5-.1.6l-.5.6c-.1.2-.1.4 0 .6.6 1.1 1.5 2 2.6 2.6.2.1.4.1.6 0l.6-.5c.2-.1.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.6.4-1.4.6-2.1.4-2.6-.6-4.7-2.7-5.3-5.3-.2-.7 0-1.5.4-2.1z" fill="#0A0A0B" stroke="none"/>
+      </svg>
+    </a>
+  </main>
+</div>
+
+</body>
+</html>

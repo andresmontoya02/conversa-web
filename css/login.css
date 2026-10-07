@@ -1,0 +1,96 @@
+/* Login de pantalla dividida (tinta / papel). Usa los tokens de css/home.css. */
+.login-pagina{background:var(--papel)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Bloque tinta (móvil: arriba y corto) ---------- */
+.login-marca{
+  background:var(--tinta);color:var(--papel);
+  padding:24px 20px 32px;display:flex;flex-direction:column;gap:28px;
+}
+.login-titular{
+  margin:0;font-family:var(--f-display);font-weight:700;
+  font-size:clamp(32px, 9vw, 36px);line-height:1.08;letter-spacing:.06em;
+}
+.login-titular span{display:block}
+.login-titular .lila{color:var(--lila)}
+.login-bajada,.login-firma{display:none}
+
+/* ---------- Formulario ---------- */
+.login-principal{position:relative;padding:28px 20px 112px}
+.login-volver{
+  display:inline-flex;align-items:center;min-height:44px;margin-bottom:12px;
+  font-size:14px;color:var(--tinta);
+}
+.login-caja{width:100%;max-width:420px;margin-inline:auto}
+.login-caja h1{font-size:32px;font-weight:700;line-height:1.12;letter-spacing:.02em}
+.login-sub{margin:10px 0 28px;color:var(--gris);font-size:16px}
+.login-form{display:flex;flex-direction:column;gap:18px}
+.campo{display:flex;flex-direction:column;gap:8px}
+.campo label{font-size:14px;font-weight:600}
+.campo input{
+  width:100%;height:48px;padding:0 16px;
+  border:1.5px solid var(--borde);border-radius:16px;background:var(--papel);color:var(--tinta);
+  font:inherit;font-size:16px;letter-spacing:normal;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.campo input::placeholder{color:var(--gris);opacity:.8}
+.campo input:focus{outline:none;border-color:var(--tinta);box-shadow:0 0 0 3px var(--lila)}
+.campo-clave{position:relative}
+.campo-clave input{padding-right:56px}
+.ojo{
+  position:absolute;top:2px;right:2px;width:44px;height:44px;border:0;border-radius:14px;
+  display:grid;place-items:center;background:transparent;color:var(--gris);cursor:pointer;
+  touch-action:manipulation;
+}
+.ojo:hover{color:var(--tinta)}
+.ojo [hidden]{display:none}
+.login-olvido{
+  align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;margin-block:-8px;
+  font-size:14px;font-weight:500;color:var(--tinta);
+}
+.login-entrar{width:100%;min-height:52px;margin-top:4px}
+/* Sin borde ni relieve por defecto del navegador en los <button> */
+.login-entrar,.ojo{border:0;-webkit-appearance:none;appearance:none}
+.login-aviso{margin:-4px 0 0;min-height:1.45em;font-size:14px;color:var(--gris);text-align:center}
+.login-enlaces{display:flex;justify-content:center;gap:4px 20px;flex-wrap:wrap;margin-top:20px;font-size:13px}
+.login-enlaces a{display:inline-flex;align-items:center;min-height:44px;color:var(--gris)}
+
+/* ---------- Botón flotante de WhatsApp ---------- */
+.login-wa{
+  position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:10;
+  width:56px;height:56px;border-radius:50%;background:var(--lima);
+  display:grid;place-items:center;box-shadow:var(--sombra), 0 1px 2px rgba(10,10,11,.08);
+  transition:transform .15s ease, opacity .15s ease, background-color .18s ease;
+}
+.login-wa:hover{transform:translateY(-1px)}
+.login-wa.apartado{opacity:0;pointer-events:none}
+
+/* ---------- Desktop: dos columnas a pantalla completa ---------- */
+@media (min-width:1024px){
+  .login-split{display:grid;grid-template-columns:42% 1fr;min-height:100vh;min-height:100dvh}
+  .login-marca{
+    padding:clamp(40px, 3.75vw, 64px);justify-content:space-between;gap:40px;
+  }
+  .login-mensaje{display:flex;flex-direction:column;gap:24px}
+  .login-titular{font-size:clamp(40px, 3.75vw, 64px)}
+  .login-bajada{display:block;margin:0;max-width:36ch;font-size:18px;line-height:1.45;color:rgba(255,255,255,.75)}
+  .login-firma{display:block;margin:0;font-size:14px;color:rgba(255,255,255,.5)}
+  .login-firma .p{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--lima);margin-left:3px}
+  .login-principal{display:flex;align-items:center;justify-content:center;padding:96px 48px}
+  .login-volver{position:absolute;top:32px;left:40px;margin:0}
+}
+/* ---------- Hover y foco: "pasar el mouse = lila" ---------- */
+.login-volver,.login-olvido,.login-enlaces a{
+  text-decoration:underline transparent;text-underline-offset:3px;
+  transition:color .18s ease, text-decoration-color .18s ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .login-volver:hover,.login-olvido:hover,.login-enlaces a:hover{color:var(--tinta);text-decoration-color:currentColor}
+  .login-wa:hover{background:var(--lila)}
+}
+.login-volver:focus-visible,.login-olvido:focus-visible,.login-enlaces a:focus-visible{color:var(--tinta);text-decoration-color:currentColor}
+.login-wa:focus-visible{background:var(--lila)}
+
+@media (prefers-reduced-motion:reduce){
+  .login-wa,.campo input{transition:none}
+}
