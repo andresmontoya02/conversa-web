@@ -269,3 +269,50 @@ html{scroll-padding-top:var(--alto-nav)}
   transition-delay:calc(var(--i, 0) * 80ms);
 }
 .revelar-on .revelar.visible{opacity:1;transform:none}
+
+/* =====================================================================
+   Hover y foco con la paleta de Conversa: "pasar el mouse = lila".
+   :hover solo con mouse (hover: hover + pointer: fine) para que en el
+   celular no queden pegados al tocar; :focus-visible siempre, además del
+   outline. Con prefers-reduced-motion la regla global quita transiciones.
+   ===================================================================== */
+.btn{transition:transform .15s ease, background-color .18s ease, color .18s ease, border-color .18s ease}
+.btn .punto{transition:background-color .18s ease}
+.nav-links a,.footer nav a{transition:color .18s ease, opacity .18s ease}
+.agente .enlace-texto{
+  text-decoration:underline 2px transparent;text-underline-offset:4px;
+  transition:text-decoration-color .18s ease;
+}
+
+/* Franja de garantías: cada ítem lleva siempre el mismo padding (fondo
+   transparente) para que el hover no mueva nada. El gap y los márgenes
+   compensan ese padding y la línea superior se dibuja aparte, así
+   en reposo se ve alineada igual que antes. */
+.franja{
+  position:relative;gap:0 4px;margin-inline:-12px;padding-top:19px;margin-bottom:-6px;border-top:0;
+}
+.franja::before{content:"";position:absolute;top:0;left:12px;right:12px;border-top:1px solid var(--borde)}
+.franja span{
+  padding:6px 12px;border-radius:var(--r-pill);background:transparent;
+  transition:background-color .18s ease, color .18s ease;
+}
+.franja span::before{transition:opacity .18s ease}
+
+@media (hover:hover) and (pointer:fine){
+  .btn-tinta:hover{background:var(--lila);color:var(--tinta)}
+  .btn-tinta:hover .punto{background:var(--tinta)}
+  .btn-lima:hover{background:var(--lila);color:var(--tinta)}
+  .btn-borde:hover{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+  .nav .btn-borde:hover{background:var(--papel);color:var(--tinta);border-color:var(--papel)}
+  .nav-links a:hover,.footer nav a:hover{color:var(--lima);opacity:1}
+  .agente:hover .enlace-texto{text-decoration-color:var(--lila)}
+  .franja span:hover{background:var(--lila);color:var(--tinta)}
+  .franja span:hover::before{opacity:1}
+}
+.btn-tinta:focus-visible{background:var(--lila);color:var(--tinta)}
+.btn-tinta:focus-visible .punto{background:var(--tinta)}
+.btn-lima:focus-visible{background:var(--lila);color:var(--tinta)}
+.btn-borde:focus-visible{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.nav .btn-borde:focus-visible{background:var(--papel);color:var(--tinta);border-color:var(--papel)}
+.nav-links a:focus-visible,.footer nav a:focus-visible{color:var(--lima);opacity:1}
+.agente:focus-visible .enlace-texto{text-decoration-color:var(--lila)}
