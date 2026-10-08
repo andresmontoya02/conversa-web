@@ -55,7 +55,6 @@ h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
 .nav-links a{opacity:.8}
 .nav-links a:hover{opacity:1}
 .nav-acciones{display:flex;gap:10px;align-items:center}
-.nav-acciones .btn-borde{display:none}
 
 /* ---------- Hero ---------- */
 .hero{padding-block:48px 64px;overflow:hidden}
@@ -195,7 +194,6 @@ h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
 /* ---------- Tablet / desktop ---------- */
 @media (min-width:720px){
   :root{--gutter:32px}
-  .nav-acciones .btn-borde{display:inline-flex}
   .agentes{grid-template-columns:repeat(2,1fr)}
   .agente.tuyo{grid-column:1 / -1}
   .carrusel{grid-auto-flow:row;grid-template-columns:repeat(2,1fr);overflow:visible;margin-inline:0;padding-inline:0}
@@ -320,4 +318,27 @@ html{scroll-padding-top:var(--alto-nav)}
    pero no crece. */
 @media (prefers-reduced-motion:reduce){
   .franja span:hover{transform:none}
+}
+
+/* =====================================================================
+   Isla en celular (< 768px): solo "Iniciar sesión", como píldora lima.
+   WhatsApp sale de la isla porque el CTA grande del hero ya lo cubre.
+   Desde 768px la isla muestra ambos botones como siempre.
+   ===================================================================== */
+.nav :focus-visible{outline-color:var(--lima)}
+@media (max-width:767.98px){
+  .nav-acciones .nav-wa{display:none}
+  .nav .nav-login{background:var(--lima);color:var(--tinta);border-color:var(--lima)}
+  .nav .nav-login:focus-visible{background:var(--lila);color:var(--tinta);border-color:var(--lila)}
+  .nav .nav-inner{gap:12px}
+}
+@media (max-width:767.98px) and (hover:hover) and (pointer:fine){
+  .nav .nav-login:hover{background:var(--lila);color:var(--tinta);border-color:var(--lila)}
+}
+/* Celulares de menos de 360px: logo y botón un poco más compactos para que
+   quepan en la isla sin desbordarse */
+@media (max-width:359.98px){
+  .nav .nav-inner{gap:8px;padding-left:16px}
+  .nav .marca{font-size:20px;gap:8px}
+  .nav .nav-login{padding-inline:14px}
 }
