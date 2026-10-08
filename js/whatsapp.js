@@ -1,5 +1,5 @@
 // TODO: pendiente flujo de prospectos en el bot
-var WHATSAPP_NUMBER = "573053060642";
+var WHATSAPP_NUMBER = "573053060656";
 var WHATSAPP_BASE = "https://wa.me/" + WHATSAPP_NUMBER;
 document.querySelectorAll("[data-wa-msg]").forEach(function (el) {
   el.href = WHATSAPP_BASE + "?text=" + encodeURIComponent(el.getAttribute("data-wa-msg"));
