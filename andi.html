@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/andi.css">
 <script src="js/home.js" defer></script>
+<script src="js/nav-movil.js" defer></script>
 </head>
 <body>
 
@@ -38,6 +39,20 @@
     </div>
   </div>
 </header>
+
+<!-- Nav de celular (< 768px): círculo con la C que se despliega a píldora. js/nav-movil.js -->
+<nav class="nav-c" id="navC" aria-label="Conversa">
+  <button type="button" class="nav-c-boton" aria-label="Menú de Conversa" aria-expanded="false" aria-controls="navCPanel">
+    <svg class="nav-c-logo" viewBox="0 0 100 100" width="30" height="30" fill="none" aria-hidden="true">
+      <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-dasharray="141 47" transform="rotate(55 50 50)"/>
+      <circle cx="78" cy="62" r="8" fill="#E8F76B"/>
+    </svg>
+  </button>
+  <div class="nav-c-panel" id="navCPanel" aria-hidden="true">
+    <a class="nav-c-marca" href="/" tabindex="-1">Conversa</a>
+    <a class="nav-c-login" href="https://app.conversa-col.com/login" tabindex="-1">Iniciar sesión</a>
+  </div>
+</nav>
 
 <main id="contenido">
   <section class="pop-hero">
@@ -124,7 +139,7 @@
         <div class="scrolly-step paso-intro" data-step="0">
           <span class="num">Míralo funcionar</span>
           <h2>Un cambio de turno, de principio a fin.</h2>
-          <p>Baja despacio: los chats avanzan contigo. Así le llega a cada persona, cada una en su propio WhatsApp.</p>
+          <p><span class="intro-scroll">Baja despacio: los chats avanzan contigo. </span>Así le llega a cada persona, cada una en su propio WhatsApp.</p>
         </div>
 
         <div class="scrolly-step" data-step="1">
@@ -220,6 +235,79 @@
             </div>
           </div>
         </div>
+
+        <!-- Celular (< 768px): en vez del demo con scroll, los pasos apilados.
+             Las pestañas Jefe/Camila cambian cuál pila se ve (js/andi-demo.js). -->
+        <ol class="pila activa" data-pila="jefe" aria-label="Chat del jefe, paso a paso">
+          <li class="pila-paso">
+            <span class="pila-num">Paso 1</span>
+            <h3 class="pila-titulo">El jefe elige cómo se aprueban los cambios.</h3>
+            <div class="pila-tarjeta"><div class="pila-tel">
+              <div class="pila-top"><span class="pila-av" aria-hidden="true">A</span><span class="pila-top-txt"><b>Andi · Conversa</b><small>en línea</small></span></div>
+              <div class="pila-chat">
+                <div class="config-card"><div class="config-card-title">Configuración de turnos</div><div class="config-card-options"><span class="config-pill">Automático</span><span class="config-pill active">Con aprobación</span></div></div>
+              </div>
+            </div></div>
+          </li>
+          <li class="pila-paso">
+            <span class="pila-num">Paso 2</span>
+            <h3 class="pila-titulo">Le llega la solicitud y decide.</h3>
+            <div class="pila-tarjeta"><div class="pila-tel">
+              <div class="pila-top"><span class="pila-av" aria-hidden="true">A</span><span class="pila-top-txt"><b>Andi · Conversa</b><small>en línea</small></span></div>
+              <div class="pila-chat">
+                <p class="i">Solicitud #128 necesita tu aprobación:<br>Camila cede jueves 14:00–22:00 → lo tomaría Mateo.<br>Responde *SI 128* para aprobar o *NO 128* para rechazar.</p>
+                <div class="pt-btns"><span class="si">Aprobar</span><span>Rechazar</span></div>
+              </div>
+            </div></div>
+          </li>
+          <li class="pila-paso">
+            <span class="pila-num">Paso 3</span>
+            <h3 class="pila-titulo">En modo automático, solo recibe un aviso.</h3>
+            <div class="pila-tarjeta"><div class="pila-tel">
+              <div class="pila-top"><span class="pila-av" aria-hidden="true">A</span><span class="pila-top-txt"><b>Andi · Conversa</b><small>en línea</small></span></div>
+              <div class="pila-chat">
+                <p class="i">Aviso: Camila y Mateo cambiaron su turno del jueves automáticamente. No necesitas hacer nada.</p>
+              </div>
+            </div></div>
+          </li>
+        </ol>
+
+        <ol class="pila" data-pila="camila" aria-label="Chat de Camila, paso a paso">
+          <li class="pila-paso">
+            <span class="pila-num">Paso 1</span>
+            <h3 class="pila-titulo">Camila le escribe a Andi y elige qué necesita.</h3>
+            <div class="pila-tarjeta"><div class="pila-tel">
+              <div class="pila-top"><span class="pila-av" aria-hidden="true">A</span><span class="pila-top-txt"><b>Andi · Conversa</b><small>en línea</small></span></div>
+              <div class="pila-chat">
+                <p class="i">Hola Camila, soy Andi. ¿En qué te ayudo? Responde con el número:<br>1. Cambiar turno<br>2. Cambiar día libre<br><br>Si ya tienes una solicitud en curso, escribe "cancelar" para cancelarla.</p>
+                <p class="o">1</p>
+              </div>
+            </div></div>
+          </li>
+          <li class="pila-paso">
+            <span class="pila-num">Paso 2</span>
+            <h3 class="pila-titulo">Andi le pregunta para qué día.</h3>
+            <div class="pila-tarjeta"><div class="pila-tel">
+              <div class="pila-top"><span class="pila-av" aria-hidden="true">A</span><span class="pila-top-txt"><b>Andi · Conversa</b><small>en línea</small></span></div>
+              <div class="pila-chat">
+                <p class="i">¿Qué día? (DD/MM/AAAA)</p>
+                <p class="o">03/10/2026</p>
+              </div>
+            </div></div>
+          </li>
+          <li class="pila-paso">
+            <span class="pila-num">Paso 3</span>
+            <h3 class="pila-titulo">Andi busca con quién cambiar y le avisa a Sofía.</h3>
+            <div class="pila-tarjeta"><div class="pila-tel">
+              <div class="pila-top"><span class="pila-av" aria-hidden="true">A</span><span class="pila-top-txt"><b>Andi · Conversa</b><small>en línea</small></span></div>
+              <div class="pila-chat">
+                <p class="i">¿Con quién quieres cambiar? (mismo día)<br>1 · Sofía (13:00-18:00)</p>
+                <p class="o">Sofía</p>
+                <p class="i">Le envié tu propuesta a Sofía. Te aviso cuando responda.</p>
+              </div>
+            </div></div>
+          </li>
+        </ol>
       </div>
 
     </div>

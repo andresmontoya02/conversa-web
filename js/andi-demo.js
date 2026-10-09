@@ -441,6 +441,10 @@
       s.classList.toggle("tab-active", isThis);
       s.classList.toggle("is-focused", isThis);
     });
+    /* Celular: la pila de pasos que corresponde a la pestaña */
+    els.scrolly.querySelectorAll(".pila").forEach(function (p) {
+      p.classList.toggle("activa", p.dataset.pila === phone);
+    });
   }
 
   function goToStep(step, animate) {
