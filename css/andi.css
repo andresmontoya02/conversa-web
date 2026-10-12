@@ -323,3 +323,71 @@ button{font:inherit;color:inherit}
 @media (max-width:767.98px) and (prefers-reduced-motion:reduce){
   .nav-c-logo{transform:none}
 }
+
+/* =====================================================================
+   Precios (#precios). Móvil primero: todo apilado; desde 720px las
+   tarjetas se reparten solas (flex 1 1 250px) y la calculadora va en
+   dos columnas. Los precios de las tarjetas viven en js/precios.js.
+   ===================================================================== */
+.precios{padding-top:72px}
+.precios-cabeza{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:40px}
+.precios-chip{background:var(--lila);color:var(--tinta);border-radius:var(--r-pill);padding:8px 16px;font-size:14px;font-weight:500}
+.precios-cabeza h2{font-weight:700;font-size:clamp(34px,7vw,72px);line-height:1.08;letter-spacing:-.04em;max-width:16ch}
+.precios-resalta{background:var(--lima);border-radius:14px;padding:0 .14em;white-space:nowrap;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.precios-cabeza p{margin:0;max-width:44ch;font-size:clamp(16px,2vw,19px);color:var(--gris)}
+
+/* Banda lila con las 4 tarjetas */
+.precios-banda{padding-block:56px}
+.planes{list-style:none;margin:0 auto;padding:0;max-width:1200px;display:flex;flex-wrap:wrap;gap:24px}
+.plan{
+  flex:1 1 250px;min-width:0;background:var(--papel);border:1px solid var(--borde);border-radius:var(--r-card);
+  box-shadow:var(--sombra);padding:28px 24px;display:flex;flex-direction:column;gap:14px;
+}
+.plan p{margin:0}
+.plan-rango{font-family:var(--f-display);font-weight:700;font-size:40px;line-height:1;letter-spacing:-.03em}
+.plan-rango span,.plan-precio span{display:block;margin-top:6px;font-family:var(--f-texto);font-weight:500;font-size:16px;letter-spacing:.01em;color:var(--gris)}
+.plan-precio{font-family:var(--f-display);font-weight:700;font-size:44px;line-height:1.05;letter-spacing:-.03em}
+.plan-frase{font-size:15.5px;line-height:1.5;color:#4A4753;flex:1}
+.plan .btn{align-self:stretch;margin-top:8px}
+/* Tarjeta destacada en tinta: el gris no da contraste sobre tinta, va blanco atenuado */
+.plan-destacado{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.plan-destacado .plan-precio{color:var(--lima)}
+.plan-destacado .plan-rango span,.plan-destacado .plan-precio span,.plan-destacado .plan-frase{color:rgba(255,255,255,.78)}
+.plan-destacado :focus-visible{outline-color:var(--lima)}
+
+/* Todos los planes incluyen */
+.incluye{padding-block:64px 48px}
+.incluye h2,.calc h2{font-weight:700;font-size:clamp(28px,5vw,44px);line-height:1.1;letter-spacing:-.03em}
+.incluye-lista{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:16px 24px}
+.incluye-lista li{flex:1 1 280px;min-width:0;display:flex;align-items:flex-start;gap:12px;font-size:16.5px;line-height:1.45}
+.check{flex:none;width:28px;height:28px;border-radius:50%;background:var(--lima);display:grid;place-items:center;margin-top:-2px}
+
+/* Calculadora */
+.calc{background:#F3F0FE;border-radius:32px;padding:28px 20px;display:grid;gap:24px}
+.calc-control{display:flex;flex-direction:column;gap:16px;min-width:0}
+.calc-control p{margin:0;font-size:16px;line-height:1.5;color:#4A4753}
+.calc-label{font-weight:600;font-size:17px;margin-top:4px}
+.calc-label span{font-family:var(--f-display);font-weight:700}
+.calc-range{width:100%;height:44px;margin:0;accent-color:var(--tinta);cursor:pointer;touch-action:pan-y}
+.calc-range:focus-visible{outline:2px solid var(--tinta);outline-offset:4px;border-radius:8px}
+/* Marcas sobre la escala 1–51: 1 → 0%, 15 → 28%, 30 → 58%, 50+ → 100% */
+.calc-marcas{position:relative;height:18px;margin-top:-10px;font-size:13px;font-weight:500;color:var(--gris)}
+.calc-marcas span{position:absolute;top:0;transform:translateX(-50%)}
+.calc-marcas span:nth-child(1){left:0;transform:none}
+.calc-marcas span:nth-child(2){left:28%}
+.calc-marcas span:nth-child(3){left:58%}
+.calc-marcas span:nth-child(4){right:0;transform:none}
+.calc-panel{background:var(--tinta);color:var(--papel);border-radius:var(--r-card);padding:28px 24px;display:flex;flex-direction:column;justify-content:center;gap:10px;min-width:0}
+.calc-panel p{margin:0}
+.calc-titulo{font-size:15px;font-weight:500;color:rgba(255,255,255,.78)}
+.calc-precio{font-family:var(--f-display);font-weight:700;font-size:clamp(44px,9vw,64px);line-height:1;letter-spacing:-.03em;color:var(--lima);overflow-wrap:anywhere}
+.calc-detalle{font-size:16px;line-height:1.45;color:var(--papel)}
+.calc-nota{margin:0;font-size:14px;line-height:1.5;color:var(--gris)}
+
+@media (min-width:768px){
+  .precios{padding-top:104px}
+  .precios-banda{padding-block:72px}
+  .incluye{padding-block:88px 56px}
+  .calc{grid-template-columns:1.1fr 1fr;padding:48px;gap:32px 48px}
+  .calc-nota{grid-column:1 / -1}
+}

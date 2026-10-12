@@ -5,7 +5,7 @@
   if (!("IntersectionObserver" in window)) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  var grupos = [".hero-copy", ".escena", ".cabeza", ".agentes > *", ".carrusel > *", ".bloque", ".pop-cabeza", ".pop-grid > *"];
+  var grupos = [".hero-copy", ".escena", ".cabeza", ".agentes > *", ".carrusel > *", ".bloque", ".pop-cabeza", ".pop-grid > *", ".precios-cabeza", ".planes > *", ".incluye", ".calc"];
   var observador = new IntersectionObserver(function (entradas) {
     entradas.forEach(function (e) {
       if (e.isIntersecting) {
