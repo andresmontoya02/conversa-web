@@ -5,7 +5,7 @@ const PLANES = [
   { max: 30, precio: 219900, nombre: "16 a 30" },
   { max: 50, precio: 299900, nombre: "31 a 50" }
 ];
-const EXTRA_POR_EMPLEADO = 20000;
+const EXTRA_POR_EMPLEADO = 13000;
 
 // "$" + miles con punto, sin depender de la configuración regional.
 function formatoPesos(valor) {
